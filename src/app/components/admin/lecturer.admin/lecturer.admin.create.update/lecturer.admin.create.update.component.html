@@ -1,0 +1,50 @@
+
+  <div class="container py-2">
+    <div class="profile-card">
+      <!-- Profile Form -->
+      <div class="profile-form">
+        <form #studentForm="ngForm">
+          <!-- Lectuer Name -->
+          <div class="form-group">
+            <label for="lectuer_name" class="form-label">Lectuer Name</label>
+            <input type="text" id="lectuer_name" class="form-control" name="lectuer_name" required
+              placeholder="Enter lecturer name"  [(ngModel)]="lecturer_name"/>
+          </div>
+          <!-- Deparment -->
+          <div class="form-group">
+            <label for="department" class="form-label">Deparment</label>
+            <input type="text" id="department" class="form-control" name="department"
+            placeholder="Enter deparment" [(ngModel)]="department"/>
+          </div>
+          <!-- User Selection with Search -->
+          <div class="form-group">
+            <label for="user_id" class="form-label">User Account</label>
+            <!-- Search Bar -->
+            <div class="search-bar mb-2">
+              <input type="text" class="form-control search-input" id="userSearch" placeholder="Search users..." />
+              <i class="bi bi-search search-icon"></i>
+            </div>
+            <!-- Scrollable User List -->
+            <div class="scrollable-list">
+              <div class="form-check user-item" *ngFor="let user of userList">
+                  <input type="radio" class="form-check-input" 
+                         [id]="'user-' + user.id" 
+                         name="selectedUser" 
+                         [value]="user.id" 
+                         [(ngModel)]="user_id">
+                  <label class="form-check-label" [for]="'user-' + user.id">
+                      <div class="user-name">{{ user.full_name }}</div>
+                      <div class="user-details">{{ user.phone_number }} | {{ user.email }}</div>
+                  </label>
+              </div>
+          </div>
+          </div>
+        </form>
+      </div>
+      <!-- Form Footer -->
+      <div class="form-footer">
+        <button class="btn btn-primary me-2" (click)="createLecturer()" *ngIf="lecturer?.id === 0">Create Lecturer</button>
+    <button class="btn btn-primary" (click)="updateLecturer(lecturer)" *ngIf="lecturer?.id !== 0">Update Student</button>
+      </div>  
+    </div>
+  </div>

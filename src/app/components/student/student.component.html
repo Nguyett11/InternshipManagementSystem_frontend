@@ -1,0 +1,60 @@
+
+
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo-container">
+            <div class="logo">
+                <span>QN</span>
+            </div>
+            <div>
+                <h1 class="university-title">TRƯỜNG ĐẠI HỌC QUY NHƠN</h1>
+                <p class="university-subtitle">CỔNG THÔNG TIN SINH VIÊN</p>
+            </div>
+        </div>
+        <div class="user-profile">
+            <div class="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="avatar">SV</div>
+                <span class="profile-name">Nguyễn Văn A</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" routerLink="detail" 
+                    routerLinkActive="active"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Cài đặt</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" (click)="logout(); $event.preventDefault();"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid main-container">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-th-large me-2"></i>Chức năng
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" routerLink="report" 
+                        routerLinkActive="active"><i class="fas fa-chart-bar"></i>Báo cáo</a></li>
+                    <li><a href="#" routerLink="company" 
+                        routerLinkActive="active"><i class="fas fa-building" ></i>Danh sách công ty</a></li>
+                    <li><a href="#" routerLink="mentor" 
+                        routerLinkActive="active"><i class="fas fa-user-tie" ></i>Thông tin người hướng dẫn</a></li>
+                    <li><a href="#" routerLink="lecturer" 
+                        routerLinkActive="active"><i class="fas fa-chalkboard-teacher" ></i>Thông tin giảng viên</a></li>
+                    <li><a href="#" routerLink="intership" 
+                        routerLinkActive="active"><i class="fas fa-book-reader"></i>Thông tin thực tập</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9 col-md-8">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

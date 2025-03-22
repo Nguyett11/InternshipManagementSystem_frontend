@@ -1,0 +1,133 @@
+<div class="container py-2">
+  <div class="profile-card">
+    <!-- Profile Form -->
+    <div class="profile-form">
+      <form #studentForm="ngForm" class="student-form">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="student_code" class="form-label">Student Code *</label>
+            <input type="text" class="form-control" id="student_code" [(ngModel)]="student_code" name="student_code" required />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="student_name" class="form-label">Student Name *</label>
+            <input type="text" class="form-control" id="student_name" [(ngModel)]="student_name" name="student_name" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="class_student" class="form-label">Class</label>
+            <input type="text" class="form-control" id="class_student" [(ngModel)]="class_student" name="class_student" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="major" class="form-label">Major</label>
+            <input type="text" class="form-control" id="major" [(ngModel)]="major" name="major" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="position" class="form-label">Position</label>
+            <input type="text" class="form-control" id="position" [(ngModel)]="position" name="position" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="language" class="form-label">Language</label>
+            <input type="text" class="form-control" id="language" [(ngModel)]="language" name="language" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" [(ngModel)]="status" name="status">
+              <option value="">Select status</option>
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="year_of_study" class="form-label">Year of Study</label>
+            <input type="number" class="form-control" id="year_of_study" [(ngModel)]="year_of_study" name="year_of_study" />
+          </div>
+        </div>
+
+        <!-- Account Selection -->
+        <div class="row">
+          <div class="form-group col-md-6 mb-3">
+            <label class="form-label">Company Account</label>
+            <input type="text" class="form-control search-input" placeholder="Search company..." />
+            <div class="scrollable-list">
+              <div class="form-check company-item" *ngFor="let company  of companyList">
+                <input type="radio" class="form-check-input" [id]="'company-' + company.id" name="companyUser" [value]="company_id" [(ngModel)]="company_id">
+                <label class="form-check-label" [for]="'company-' + company .id">
+                  <div class="user-name">{{ company.company_name }}</div>
+                  <div class="user-details">{{ company.phone_number }} | {{ company.contact_person }}</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6 mb-3">
+            <label class="form-label">Mentor Account</label>
+            <input type="text" class="form-control search-input" placeholder="Search mentors..." />
+            <div class="scrollable-list">
+              <div class="form-check user-item" *ngFor="let mentor of mentorList">
+                <input type="radio" class="form-check-input" [id]="'mentor-' + mentor.id" name="mentorUser" [value]="mentor.id" [(ngModel)]="mentor_id">
+                <label class="form-check-label" [for]="'mentor-' + mentor.id">
+                  <div class="user-name">{{ mentor.mentor_name }}</div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-6 mb-3">
+            <label class="form-label">Lecturer Account</label>
+            <input type="text" class="form-control search-input" placeholder="Search lecturers..." />
+            <div class="scrollable-list">
+              <div class="form-check user-item" *ngFor="let lecturer of lecturerList">
+                <input type="radio" class="form-check-input" [id]="'lecturer-' + lecturer.id" name="lecturerUser" [value]="lecturer.id" [(ngModel)]="lecturer_id">
+                <label class="form-check-label" [for]="'lecturer-' + lecturer.id">
+                  <div class="user-name">{{ lecturer.lecturer_name }}</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6 mb-3">
+            <label class="form-label">User Account</label>
+            <input type="text" class="form-control search-input" placeholder="Search users..." />
+            <div class="scrollable-list">
+              <div class="form-check user-item" *ngFor="let user of userList">
+                <input type="radio" class="form-check-input" [id]="'user-' + user.id" name="selectedUser" [value]="user.id" [(ngModel)]="user_id">
+                <label class="form-check-label" [for]="'user-' + user.id">
+                  <div class="user-name">{{ user.full_name }}</div>
+                  <div class="user-details">{{ user.phone_number }} | {{ user.email }}</div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="start_date" [(ngModel)]="start_date" name="start_date" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="end_date" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="end_date" [(ngModel)]="end_date" name="end_date" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Form Footer -->
+    <div class="form-footer">
+      <button class="btn btn-primary" (click)="createStudent()" *ngIf="student?.student_code === 0">Create Student</button>
+      <button class="btn btn-primary" (click)="updateStudent(student)" *ngIf="student?.student_code !== 0">Update Student</button>
+    </div>
+  </div>
+</div>

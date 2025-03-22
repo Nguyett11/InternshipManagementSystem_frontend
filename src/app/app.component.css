@@ -1,0 +1,129 @@
+
+
+.separator {
+    display: flex; /* Dùng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa nội dung ngang */
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: ""; /* Tạo nội dung rỗng */
+    flex: 1; /* Tự động giãn */
+    border-bottom: 1px solid #ddd; /* Đường kẻ */
+  }
+  
+  .separator span {
+    margin: 0 10px; /* Khoảng cách hai bên */
+    color: #888; /* Màu chữ */
+  }
+  
+  .content-navbar {
+    background: linear-gradient(45deg, #000914, #457b9d); /* Nền gradient */
+  }
+  
+  .topbar-divider {
+    width: 0; /* Không có chiều ngang */
+    border-right: 1px solid #e3e6f0; /* Đường kẻ bên phải */
+    height: calc(4.375rem - 2rem); /* Chiều cao */
+    margin: auto 1rem; /* Khoảng cách tự động */
+  }
+  
+  .dropdown .btn {
+    background: none; /* Nền trong suốt */
+    border: none; /* Xóa viền */
+    font-size: 22px; /* Kích thước chữ */
+    cursor: pointer; /* Thay đổi con trỏ chuột */
+  }
+  
+  .dropdown-menu {
+    display: none; /* Ẩn menu mặc định */
+    position: absolute; /* Định vị tuyệt đối */
+    top: 100%; /* Hiển thị bên dưới nút */
+    left: -100px; /* Căn chỉnh trái */
+    background-color: #f8f9fa; /* Nền menu */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    border-radius: 5px; /* Bo góc */
+    padding: 10px 0; /* Khoảng cách trong */
+    z-index: 1000; /* Đưa menu lên trên */
+    list-style: none; /* Xóa bullet */
+    margin: 0; /* Xóa margin */
+    min-width: 160px; /* Chiều rộng tối thiểu */
+  }
+  
+  .dropdown:focus-within .dropdown-menu {
+    display: block; /* Hiển thị menu khi có focus */
+  }
+  
+  .dropdown-menu li {
+    padding: 8px 16px; /* Khoảng cách trong từng mục */
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none; /* Xóa gạch dưới */
+    color: #343a40; /* Màu chữ */
+    font-size: 14px; /* Kích thước chữ */
+    display: block; /* Hiển thị dạng khối */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu */
+  }
+  
+  
+  /* Table Styles */
+  table {
+    width: 100%; /* Chiều rộng bảng */
+    border-collapse: collapse; /* Gộp đường viền */
+    margin-top: 20px; /* Khoảng cách trên */
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd; /* Đường viền ô */
+    padding: 8px; /* Khoảng cách trong ô */
+    text-align: center; /* Căn giữa nội dung */
+  }
+  
+  table th {
+    background-color: #457b9d; /* Nền tiêu đề */
+    color: white; /* Màu chữ tiêu đề */
+    font-weight: bold; /* Chữ đậm */
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Nền hàng chẵn */
+  }
+  
+  table tr:hover {
+    background-color: #ddd; /* Nền khi hover */
+  }
+  
+  .pagination-container {
+    margin-top: 20px; /* Tạo khoảng cách phía trên cho vùng chứa phân trang */
+    margin: 0 auto; /* Căn giữa vùng chứa phân trang theo chiều ngang */
+  }
+  
+  .pagination {
+    list-style: none; /* Loại bỏ kiểu danh sách (các dấu chấm/bullet) */
+    padding: 0; /* Loại bỏ khoảng cách bên trong của danh sách */
+    display: flex; /* Sử dụng bố cục flexbox để căn chỉnh các mục danh sách */
+    gap: 10px; /* Tạo khoảng cách giữa các mục trong danh sách */
+    float: right; /* Đẩy toàn bộ danh sách về phía bên phải */
+  }
+  
+  .page-item a {
+    display: inline-block; /* Hiển thị như một khối nội tuyến để dễ căn chỉnh */
+    text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+    color: #333; /* Màu chữ mặc định là xám đậm */
+    background-color: #f9f9f9; /* Màu nền mặc định là xám nhạt */
+    border: 1px solid #ddd; /* Đường viền nhẹ với màu xám nhạt */
+    border-radius: 8px; /* Làm bo góc để tạo cảm giác mềm mại cho nút */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà khi hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ nhẹ phía dưới để tạo chiều sâu */
+  }
+  
+  .page-item a:hover {
+    background-color: #343a40; /* Khi di chuột, nền chuyển thành màu xám đen */
+    color: #fff; /* Khi di chuột, màu chữ chuyển thành màu trắng */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Tăng bóng mờ để tạo hiệu ứng nổi bật */
+    transform: translateY(-2px); /* Đẩy nút lên trên một chút để tạo hiệu ứng động */
+  }
+  
+  

@@ -1,0 +1,97 @@
+<div class="content-card">
+    <div class="card-body">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h5 class="filter-title">Tìm kiếm công ty</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option selected>Địa điểm</option>
+                        <option>Công nghệ thông tin</option>
+                        <option>Kinh tế</option>
+                        <option>Ngoại ngữ</option>
+                        <option>Kỹ thuật và Công nghệ</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select">
+                        <option selected>Bộ môn</option>
+                        <option>Công nghệ phần mềm</option>
+                        <option>Hệ thống thông tin</option>
+                        <option>Mạng máy tính</option>
+                        <option>Khoa học máy tính</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm..." [(ngModel)]="keyword">
+                        <button class="btn btn-primary search-button" (click)="getCompanies(keyword, currentPage, limit)">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lecturers Grid -->
+        <div class="row g-4">
+            <!-- Lecturer 1 -->
+
+            <div class="col-lg-4 col-md-6" *ngFor="let company of companyList">
+                <div class="lecturer-card">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Lecturer" class="lecturer-image">
+                    <div class="lecturer-info">
+                        <h5 class="lecturer-name">{{ company.company_name }}</h5>
+                        <p class="lecturer-title">{{ company.contact_person }}</p>
+                        <div class="lecturer-contact">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ company.email }}</span>
+                        </div>
+                        <div class="lecturer-contact">
+                            <i class="fas fa-phone"></i>
+                            <span>{{ company.phone_number }}</span>
+                        </div>
+                        <div class="lecturer-contact">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>{{ company.address }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+          <ul class="pagination">
+            @if(currentPage > 0) {
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(0)">First</a>
+              </li>
+            }
+            @if(currentPage > 0) {
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
+              </li>
+            }            
+            @for(page of visiblePages; track page) {
+              <ng-container>
+                <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
+                  <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+                </li>
+              </ng-container>
+            }     
+            
+             @if(currentPage < totalPages - 1)  {
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)">
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+              </li>
+             }        
+          </ul>
+        </nav>
+    </div>
+</div>

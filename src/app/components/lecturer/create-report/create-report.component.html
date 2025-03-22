@@ -1,0 +1,115 @@
+<!-- Main Content -->
+<div class="content-header">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="page-title">Tạo báo cáo mới</h2>
+  </div>
+</div>
+<!-- Create Report Form -->
+<div class="row">
+  <div class="col-lg-8 fade-in">
+    <div class="card">
+      <div class="card-header">
+        <span>Thông tin báo cáo</span>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <label for="reportTitle" class="form-label">Tiêu đề báo cáo <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="reportTitle" placeholder="Nhập tiêu đề báo cáo" [(ngModel)]="title" name="title">
+          </div>
+          <div class="mb-3">
+            <label for="reportDescription" class="form-label">Mô tả <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="reportDescription" rows="4"
+              placeholder="Nhập mô tả chi tiết về báo cáo" [(ngModel)]="description" name="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="reportAttachments" class="form-label">Hạn nộp bài</label>
+            <input type="date" class="form-control" id="reportAttachments" multiple [(ngModel)]="dueDate" name="due_date">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 fade-in delay-1">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <button type="button" (click)="insertReport()"  class="btn btn-primary">
+            <i class="fas fa-save me-2"></i>Lưu báo cáo
+          </button>
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fas fa-times me-2"></i>Hủy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Student Selection -->
+<div class="card fade-in delay-2">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span>Chọn sinh viên</span>
+    <div class="d-flex">
+      <div class="input-group me-2" style="width: 300px;">
+        <input type="text" class="form-control" id="studentSearch" placeholder="Tìm kiếm sinh viên...">
+        <button class="btn btn-outline-secondary" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <label for="studentClass" class="form-label">Lọc theo lớp</label>
+      <select class="form-select" id="studentClass">
+        <option value="all" selected>Tất cả các lớp</option>
+        <option value="20T1">20T1</option>
+        <option value="20T2">20T2</option>
+        <option value="21T1">21T1</option>
+        <option value="21T2">21T2</option>
+      </select>
+    </div>
+    <div class="row" id="studentList">
+      <!-- Student Card 1 -->
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card student-card">
+          <div class="card-body d-flex">
+            <div class="student-avatar">
+              <span>NV</span>
+            </div>
+            <div class="student-info flex-grow-1">
+              <h5>Nguyễn Văn A</h5>
+              <p>MSSV: 2050123456</p>
+              <span class="badge badge-success">Lớp 20T1</span>
+            </div>
+            <div class="student-select"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div>
+        <span class="text-muted">Đã chọn: <span id="selectedCount">0</span> sinh viên</span>
+      </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination mb-0">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

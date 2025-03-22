@@ -1,0 +1,112 @@
+<div class="container">
+  <!-- User Details Section -->
+  <h2 class="section-title">User Details</h2>
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="d-flex align-items-center">
+        <div class="profile-avatar">
+          {{ mentorResponse.user_response.full_name.charAt(0) }}
+        </div>
+        <div>
+          <h2 class="profile-name">{{ mentorResponse.user_response.full_name }}</h2>
+          <p class="profile-role">{{ mentorResponse.user_response.role.name }}</p>
+        </div>
+      </div>
+      <div>
+        <span class="status-badge">
+          {{ mentorResponse.user_response.is_active ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+    </div>
+    
+    <div class="profile-content">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Email</p>
+            <p class="field-value">{{ mentorResponse.user_response.email }}</p>
+          </div>
+          
+          <div>
+            <p class="field-label">Phone Number</p>
+            <p class="field-value">{{ mentorResponse.user_response.phone_number }}</p>
+          </div>
+          
+          <div>
+            <p class="field-label">Password</p>
+            <p class="field-value">••••••</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Date of Birth</p>
+            <p class="field-value">{{ mentorResponse.user_response.date_of_birth }}</p>
+          </div>
+          
+          <div>
+            <p class="field-label">Desired Role</p>
+            <p class="field-value">{{ mentorResponse.user_response.desired_role }}</p>
+          </div>
+          
+          <div>
+            <p class="field-label">Gender</p>
+            <p class="field-value">{{ mentorResponse.user_response.gender }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Retype Password</p>
+            <p class="field-value">••••••</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Is Active</p>
+            <p class="field-value">{{ mentorResponse.user_response.is_active ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Lecturer Details Section -->
+  <h2 class="section-title">Mentor Details</h2>
+  <div class="profile-card">
+    <div class="profile-content">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Lecturer Code</p>
+            <p class="field-value">{{ mentorResponse.id }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Mentor Name</p>
+            <p class="field-value">{{ mentorResponse.mentor_name }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Company</p>
+            <p class="field-value">{{ mentorResponse.company_id }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <p class="field-label">Position</p>
+            <p class="field-value">{{ mentorResponse.position }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>

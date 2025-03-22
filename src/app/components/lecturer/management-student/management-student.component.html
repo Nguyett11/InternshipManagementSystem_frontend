@@ -1,0 +1,39 @@
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Mã sinh viên</th>
+        <th>Tên</th>
+        <th>Lớp</th>
+        <th>Năm học</th>
+        <th>Ngành</th>
+        <th>Ngôn ngữ</th>
+        <th>Vị trí</th>
+        <th>Ngày bắt đầu</th>
+        <th>Ngày kết thúc</th>
+        <th>Trạng thái</th>
+        <th>Người dùng</th>
+        <th>Số điện thoại</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.student_code }}</td>
+        <td>{{ student.student_name }}</td>
+        <td>{{ student.class_student }}</td>
+        <td>{{ student.year_of_study }}</td>
+        <td>{{ student.major }}</td>
+        <td>{{ student.language }}</td>
+        <td>{{ student.position }}</td>
+        <td>{{ student.start_date }}</td>
+        <td>{{ student.end_date }}</td>
+        <td>{{ student.student_status }}</td>
+        <td>{{ student.user_response.email }}</td>
+        <td>{{ student.user_response.phone_number }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+    

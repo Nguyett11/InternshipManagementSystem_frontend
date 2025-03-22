@@ -1,0 +1,258 @@
+.table-container {
+  max-width: 1500px;
+  width: calc(100% - 40px);
+  /* Trừ 20px mỗi bên */
+  margin: 0 auto;
+}
+
+td button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.btn-icon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Table Styles */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom-width: 1px;
+  padding: 0.75rem 1.5rem;
+}
+
+.table td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  border-color: var(--border-color);
+}
+
+
+/* Form Styles */
+.form-control {
+  padding: 0.5rem 0.75rem;
+  border-color: var(--border-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(80, 72, 229, 0.25);
+}
+
+/* Pagination Styles */
+.pagination .page-link {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Customer Code Style */
+.fw-medium {
+  font-weight: 500;
+  font-family: monospace;
+  background-color: rgba(80, 72, 229, 0.08);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  white-space: nowrap;
+  /* Giữ các nút trên cùng một dòng */
+}
+
+.dropdown-menu li {
+  display: inline-block;
+  /* Xếp các nút theo hàng ngang */
+  margin-right: 10px;
+  /* Khoảng cách giữa các nút */
+  text-align: center;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu .dropdown-item i {
+  font-size: 1.2rem;
+}
+
+/* Căn chỉnh modal */
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header modal */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Button đóng modal */
+.btn-close {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Căn chỉnh modal */
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header modal */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Button đóng modal */
+.btn-close {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Nội dung modal */
+.modal-body {
+  padding: 20px;
+  font-size: 16px;
+}
+
+/* Label */
+.modal-body label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+/* Select dropdown */
+.modal-body select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+}
+
+/* Hover và focus cho select */
+.modal-body select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Button trong modal */
+.modal-body .btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button Primary */
+.modal-body .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.modal-body .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Căn giữa nội dung trong modal */
+.modal-body div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Điều chỉnh khoảng cách giữa các phần tử */
+.modal-body select,
+.modal-body button {
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 90%;
+  }
+
+  .modal-body button {
+    width: 100%;
+  }
+}
+
+.profile-title {
+  color: #1a1a1a;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.profile-subtitle {
+  color: #6c757d;
+  font-size: 14px;
+}
+

@@ -1,0 +1,191 @@
+<div class="table-container">
+  <div class="content p-3">
+    <!-- Filters -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Customer name">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Email address">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" placeholder="Phone number">
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-secondary me-2">Reset</button>
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Customers Table -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">All Users</h5>
+        <button class="btn btn-primary" data-bs-target="#exampleModal" ><i class="bi bi-person-add" style="font-size: 20px;"></i> Add</button>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th style="min-width: 160px;">Phone Number</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+                <th style="min-width: 150px;">Desired Role</th>
+                <th>Role</th>
+                <th>Avtive</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of userList">
+                <td>{{user.full_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone_number}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.date_of_birth}}</td>
+                <td>{{user.desired_role}}</td>
+                <td><span class="fw-medium">{{user.role.name}}</span></td>
+                <td>
+                  <span class="badge" [ngClass]="user.is_active ? 'bg-success' : 'bg-danger'">
+                    {{ user.is_active ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+
+                <td style="text-align: center;">
+                  <!-- Nút ba chấm -->
+                  <div class="dropdown">
+                    <button class="btn btn-light p-0 border-0" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <!-- Danh sách nút hiển thị khi nhấn -->
+                    <ul class="dropdown-menu">
+                      <li>
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activeForm"
+                          onclick="onUserSelect(user)">
+                          <i class="bi bi-vector-pen"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#roleForm"
+                          onclick="userSelect(user)">
+                          <i class="bi bi-person-fill-gear"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item text-danger" onclick="deleteUser(user.id)">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div>Showing {{ currentPage + 1 }} of {{ totalPages }} pages</div>
+        <nav>
+          <ul class="pagination mb-0">
+            @if(currentPage > 0) {
+            <li class="page-item disabled">
+              <a class="page-link" (click)="onPageChange(0)" tabindex="-1">First</a>
+            </li>
+            }
+
+            @if(currentPage > 0) {
+            <li class="page-item">
+              <a class="page-link" (click)="onPageChange(currentPage - 1)">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+            </li>
+            }
+            @for(page of visiblePages; track page) {
+            <ng-container>
+              <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
+                <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+              </li>
+            </ng-container>
+            }
+
+            @if(currentPage < totalPages - 1) { <li class="page-item">
+              <a class="page-link" (click)="onPageChange(currentPage + 1)">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+              </li>
+              }
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="activeForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="profile-header">
+            <h1 class="profile-title">Update activity</h1>
+            <p class="profile-subtitle">Update activity for users</p>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            style="margin-bottom: 20px;" (click)="dong()"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="is_active">Update active</label>
+            <select id="is_active" [(ngModel)]="is_active" name="is_active">
+              <option value="">--- Select active ---</option>
+              <option value="true">Avtive</option>
+              <option value="false">Block</option>
+            </select>
+            <button class="btn btn-primary me-2"
+              (click)="updateUserActiveStatus()">Active</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="roleForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="profile-header">
+            <h1 class="profile-title">Update role</h1>
+            <p class="profile-subtitle">Update role for users</p>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            style="margin-bottom: 20px;" (click)="dong()"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="id">Update role</label>
+            <select id="id" [(ngModel)]="role.id" name="id">
+              <option value="">--- Select role ---</option>
+              <option value="1">ADMIN</option>
+              <option value="2">LECTURER</option>
+              <option value="3">MENTOR</option>
+              <option value="4">STUDENT</option>
+              <option value="5">USER</option>
+            </select>
+            <button class="btn btn-primary me-2" (click)="onGrantRole()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

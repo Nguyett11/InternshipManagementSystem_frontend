@@ -1,0 +1,134 @@
+<div class="container">
+    <h2>Thông tin Giảng viên</h2>
+    <button type="button" style=" margin-bottom: 20px;" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateLecturer(lecturer)">Update Lecturer <i
+        class="bi bi-person-plus"></i></button>
+        <button type="button" style="margin-bottom: 20px; margin-left: 20px;" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateUser" (click)="updateUser(lecturer)">Update Account <i
+            class="bi bi-person-plus"></i></button>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tên</th>
+                <td>{{ lecturer.lecturer_name }}</td>
+            </tr>
+            <tr>
+                <th>Phòng ban</th>
+                <td>{{ lecturer.department }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ lecturer.user_response.email }}</td>
+            </tr>
+            <tr>
+                <th>Họ và tên</th>
+                <td>{{ lecturer.user_response.full_name }}</td>
+            </tr>
+            <tr>
+                <th>Giới tính</th>
+                <td>{{ lecturer.user_response.gender }}</td>
+            </tr>
+            <tr>
+                <th>Số điện thoại</th>
+                <td>{{ lecturer.user_response.phone_number }}</td>
+            </tr>
+            <tr>
+                <th>Ngày sinh</th>
+                <td>{{ lecturer.user_response.date_of_birth | date: 'dd/MM/yyyy' }}</td>
+            </tr>
+            <tr>
+                <th>Vai trò mong muốn</th>
+                <td>{{ lecturer.user_response.desired_role }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 20px;">{{tieude}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dong()"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="lecturerForm">
+                <div class="form-group">
+                  <label for="lecturer_name">Tên giảng viên:</label>
+                  <input id="lecturer_name" type="text" class="form-control" formControlName="lecturer_name" placeholder="Nhập tên giảng viên" />
+                  <div *ngIf="lecturerForm.get('lecturer_name')?.invalid && lecturerForm.get('lecturer_name')?.touched" class="text-danger">
+                    Tên giảng viên là bắt buộc.
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label for="department">Phòng ban:</label>
+                  <input id="department" type="text" class="form-control" formControlName="department" placeholder="Nhập phòng ban" />
+                  <div *ngIf="lecturerForm.get('department')?.invalid && lecturerForm.get('department')?.touched" class="text-danger">
+                    Phòng ban là bắt buộc.
+                  </div>
+                </div>
+              
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px; margin-left: 170px;" (click)="submitLecturer()">Cập nhật</button>
+              </form>              
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="margin-left: 20px;">{{tieude}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dong()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="userForm" >
+            <div class="form-group">
+              <label for="fullName">Full Name:</label>
+              <input id="fullName" type="text" class="form-control" formControlName="full_name" placeholder="Nhập họ và tên" />
+              <div *ngIf="userForm.get('full_name')?.invalid && userForm.get('full_name')?.touched" class="text-danger">
+                Họ và tên là bắt buộc.
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input id="email" type="email" class="form-control" formControlName="email" placeholder="Nhập email" />
+              <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
+                Email không hợp lệ.
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input id="phoneNumber" type="text" class="form-control" formControlName="phone_number" placeholder="Nhập số điện thoại" />
+              <div *ngIf="userForm.get('phone_number')?.invalid && userForm.get('phone_number')?.touched" class="text-danger">
+                Số điện thoại là bắt buộc.
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="dateOfBirth">Date of Birth:</label>
+              <input id="dateOfBirth" type="date" class="form-control" formControlName="date_of_birth" />
+            </div>
+  
+            <div class="form-group">
+              <label for="desiredRole">Desired Role:</label>
+              <input id="desiredRole" type="text" class="form-control" formControlName="desired_role" placeholder="Nhập vai trò mong muốn" />
+            </div>
+  
+            <div class="form-group">
+              <label for="gender">Gender:</label>
+              <select id="gender" class="form-control" formControlName="gender">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+  
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px; margin-left: 170px;" (click)="submitUser()">Cập nhật</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

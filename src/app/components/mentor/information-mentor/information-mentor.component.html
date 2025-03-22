@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>Thông tin Giảng viên</h2>
+     <table class="table">
+        <tbody>
+            <tr>
+                <th>Tên</th>
+                <td>{{ mentor.mentor_name }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ mentor.company_id }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ mentor.position }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ mentor.user_response.email }}</td>
+            </tr>
+            <tr>
+                <th>Họ và tên</th>
+                <td>{{ mentor.user_response.full_name }}</td>
+            </tr>
+            <tr>
+                <th>Giới tính</th>
+                <td>{{ mentor.user_response.gender }}</td>
+            </tr>
+            <tr>
+                <th>Số điện thoại</th>
+                <td>{{ mentor.user_response.phone_number }}</td>
+            </tr>
+            <tr>
+                <th>Ngày sinh</th>
+                <td>{{ mentor.user_response.date_of_birth  }}</td>
+            </tr>
+            <tr>
+                <th>Vai trò mong muốn</th>
+                <td>{{ mentor.user_response.desired_role }}</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

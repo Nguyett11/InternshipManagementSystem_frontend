@@ -1,0 +1,72 @@
+<div class="container py-2">
+  <div class="profile-card">
+    <!-- Profile Form -->
+    <div class="profile-form">
+      <form>
+        <!-- Mentor Name -->
+        <div class="form-group">
+          <label for="mentor_name" class="form-label">Mentor Name</label>
+          <input type="text" id="mentor_name" class="form-control" name="mentor_name" required
+            placeholder="Enter mentor name"  [(ngModel)]="mentor_name"/>
+        </div>
+        <!-- Position -->
+        <div class="form-group">
+          <label for="position" class="form-label">Position</label>
+          <input type="text" id="position" class="form-control" name="position"
+          placeholder="Enter position" [(ngModel)]="position"/>
+        </div>
+        <!-- Company Selection -->
+        <div class="form-group">
+          <label for="company_id" class="form-label">Company</label>
+          <!-- Search Bar -->
+          <div class="search-bar mb-2">
+            <input type="text" class="form-control search-input" id="companySearch" placeholder="Search companies..." />
+            <i class="bi bi-search search-icon"></i>
+          </div>
+          <!-- Scrollable User List -->
+          <div class="scrollable-list">
+            <div class="form-check company-item" *ngFor="let company of companyList">
+                <input type="radio" class="form-check-input" 
+                       [id]="'company-' + company.id" 
+                       name="selectedCompany" 
+                       [value]="company.id" 
+                       [(ngModel)]="company_id">
+                <label class="form-check-label" [for]="'company-' + company.id">
+                    <div class="company-name">{{ company.company_name }}</div>
+                    <div class="company-details">{{ company.phone_number }} | {{ company.email }}</div>
+                </label>
+            </div>
+        </div>
+        </div>
+        <!-- User Selection with Search -->
+        <div class="form-group">
+          <label for="user_id" class="form-label">User Account</label>
+          <!-- Search Bar -->
+          <div class="search-bar mb-2">
+            <input type="text" class="form-control search-input" id="userSearch" placeholder="Search users..." />
+            <i class="bi bi-search search-icon"></i>
+          </div>
+          <!-- Scrollable User List -->
+          <div class="scrollable-list">
+            <div class="form-check user-item" *ngFor="let user of userList">
+                <input type="radio" class="form-check-input" 
+                       [id]="'user-' + user.id" 
+                       name="selectedUser" 
+                       [value]="user.id" 
+                       [(ngModel)]="user_id">
+                <label class="form-check-label" [for]="'user-' + user.id">
+                    <div class="user-name">{{ user.full_name }}</div>
+                    <div class="user-details">{{ user.phone_number }} | {{ user.email }}</div>
+                </label>
+            </div>
+        </div>
+        </div>
+      </form>
+    </div>
+    <!-- Form Footer -->
+    <div class="form-footer">
+      <button class="btn btn-primary me-2" (click)="createMentor()" *ngIf="mentor?.id === 0">Create Mentor</button>
+      <button class="btn btn-primary" (click)="updateMentor(mentor)" *ngIf="mentor?.id !== 0">Update Mentor</button>
+    </div>  
+  </div>
+</div>

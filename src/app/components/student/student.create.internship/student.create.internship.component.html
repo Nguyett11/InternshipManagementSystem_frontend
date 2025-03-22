@@ -1,0 +1,126 @@
+<form #studentForm="ngForm">
+    <div>
+      <label for="student_code">Student Code:</label>
+      <input
+        type="text"
+        id="student_code"
+        [(ngModel)]="student_code"
+        name="student_code"
+        required
+      />
+    </div>
+  
+    <div>
+      <label for="student_name">Student Name:</label>
+      <input
+        type="text"
+        id="student_name"
+        [(ngModel)]="student_name"
+        name="student_name"
+        required
+      />
+    </div>
+  
+    <div>
+      <label for="class_student">Class:</label>
+      <input
+        type="text"
+        id="class_student"
+        [(ngModel)]="class_student"
+        name="class_student"
+      />
+    </div>
+  
+    <div>
+      <label for="major">Major:</label>
+      <input
+        type="text"
+        id="major"
+        [(ngModel)]="major"
+        name="major"
+      />
+    </div>
+
+    <div>
+      <label for="position">Position:</label>
+      <input
+        type="text"
+        id="position"
+        [(ngModel)]="position"
+        name="position"
+      />
+    </div>
+
+    <div>
+      <label for="language">Language:</label>
+      <input
+        type="text"
+        id="language"
+        [(ngModel)]="language"
+        name="language"
+      />
+    </div>
+
+
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="status" name="status">
+          <option value="">Select status</option>
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+  
+    <div>
+      <label for="year_of_study">Year of Study:</label>
+      <input
+        type="number"
+        id="year_of_study"
+        [(ngModel)]="year_of_study"
+        name="year_of_study"
+      />
+    </div>
+  
+    <div>
+      <label for="company_id">Company:</label>
+      <div class="">
+        <select id="company_id" [(ngModel)]="company_id" name="company_id">
+            <option value="" disabled selected>--- Select company ---</option>
+            <option *ngFor="let company of companyList" [value]="company.id">{{ company.company_name }}</option>
+        </select>
+      </div>    
+    </div>
+  
+    <div>
+      <label for="mentor_id">Mentor:</label>
+      <div class="">
+        <select id="mentor_id" [(ngModel)]="mentor_id" name="mentor_id">
+            <option value="" disabled selected>--- Select Mentor ---</option>
+            <option *ngFor="let mentor of mentorList" [value]="mentor.id">{{ mentor.mentor_name }}</option>
+        </select>
+      </div> 
+    </div>
+  
+    <div>
+      <label for="start_date">Start Date:</label>
+      <input
+        type="date"
+        id="start_date"
+        [(ngModel)]="start_date" 
+        name="start_date"
+      />
+    </div>
+    
+    <div>
+      <label for="end_date">End Date:</label>
+      <input
+        type="date"
+        id="end_date"
+        [(ngModel)]="end_date" 
+        name="end_date"
+      />
+    </div>
+    
+    <button class="btn btn-primary me-2" (click)="createInternship()" >Create Student</button>
+  </form>

@@ -1,0 +1,176 @@
+
+    <div class="registration-container">
+        <!-- Registration Form -->
+        <div class="registration-form-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="text-primary fw-bold">QN</span>
+                </div>
+                <div>
+                    <h4 class="mb-0 fw-bold">Trường Đại học Quy Nhơn</h4>
+                </div>
+            </div>
+            
+            <h2 class="mt-4 mb-1 fw-bold">Đăng ký tài khoản</h2>
+            <p class="text-muted mb-4">Đăng ký tài khoản để truy cập cổng thông tin sinh viên</p>
+            
+            <div class="registration-alert">
+                <i class="fas fa-info-circle"></i>
+                <span>Vui lòng điền đầy đủ thông tin để đăng ký tài khoản</span>
+            </div>
+            
+            <form id="registrationForm">
+                <div class="form-card">
+                    <div class="form-section-title">
+                        <i class="fas fa-user me-2"></i>Thông tin cá nhân
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="fullName" name="full_name" placeholder="Nhập họ và tên" required>
+                        <label for="fullName">Họ và tên</label>
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="phoneNumber" name="phone_number" placeholder="Nhập số điện thoại" required>
+                        <label for="phoneNumber">Số điện thoại</label>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Giới tính</label>
+                        <div class="gender-options">
+                            <div class="gender-option">
+                                <input type="radio" id="male" name="gender" value="Nam" required>
+                                <label for="male">
+                                    <i class="fas fa-male"></i>
+                                    <span>Nam</span>
+                                </label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="female" name="gender" value="Nữ">
+                                <label for="female">
+                                    <i class="fas fa-female"></i>
+                                    <span>Nữ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="dateOfBirth" name="date_of_birth">
+                        <label for="dateOfBirth">Ngày sinh</label>
+                    </div>
+                </div>
+                
+                <div class="form-card">
+                    <div class="form-section-title">
+                        <i class="fas fa-briefcase me-2"></i>Thông tin vai trò
+                    </div>
+                    
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="desiredRole" name="desired_role" required>
+                            <option value="" selected disabled>Chọn vai trò mong muốn</option>
+                            <option value="Sinh viên">Sinh viên</option>
+                            <option value="Giảng viên">Giảng viên</option>
+                            <option value="Nhân viên">Nhân viên</option>
+                            <option value="Quản trị viên">Quản trị viên</option>
+                        </select>
+                        <label for="desiredRole">Vai trò mong muốn</label>
+                    </div>
+                </div>
+                
+                <div class="form-card">
+                    <div class="form-section-title">
+                        <i class="fas fa-lock me-2"></i>Thông tin tài khoản
+                    </div>
+                    
+                    <div class="floating-input-group">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                            <label for="password">Mật khẩu</label>
+                        </div>
+                        <div class="input-group-text" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+
+                    <div class="floating-input-group mt-3">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                            <label for="confirmPassword">Xác nhận mật khẩu</label>
+                        </div>
+                        <div class="input-group-text" id="toggleConfirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus me-2"></i>Đăng ký
+                    </button>
+                </div>
+                
+                <div class="divider">
+              
+                </div>
+                
+                
+                <div class="mt-4 text-center">
+                    <p>Bạn có tài khoản? <a href="/" class="text-link">Chuyển qua trang đăng nhập</a></p>
+                </div>
+            </form>
+            
+            <div class="registration-footer">
+                <p>© 2025 Trường Đại học Quy Nhơn. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+        
+        <!-- Banner -->
+        <div class="registration-banner">
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            
+            <div class="banner-content">
+                <h1 class="display-4 fw-bold mb-4">Tham gia cùng chúng tôi</h1>
+                <p class="lead mb-4">Đăng ký tài khoản để truy cập đầy đủ các tính năng của Cổng thông tin sinh viên Trường Đại học Quy Nhơn</p>
+                
+                <div class="feature-card">
+                    <div class="row g-4">
+                        <div class="col-md-4 feature-col">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h5 class="fw-bold">Bảo mật</h5>
+                            <p class="mb-0">Thông tin của bạn luôn được bảo vệ an toàn</p>
+                        </div>
+                        <div class="col-md-4 feature-col">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h5 class="fw-bold">Truy cập mọi nơi</h5>
+                            <p class="mb-0">Sử dụng trên mọi thiết bị, mọi lúc mọi nơi</p>
+                        </div>
+                        <div class="col-md-4 feature-col">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h5 class="fw-bold">Cập nhật liên tục</h5>
+                            <p class="mb-0">Thông tin học tập được cập nhật thường xuyên</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wave"></div>
+        </div>
+    </div>

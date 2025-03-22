@@ -1,0 +1,44 @@
+<div class="container">
+    <button type="button" style="float: right; margin-bottom: 20px;" class="btn btn-info">Add student <i
+            class="bi bi-person-plus"></i></button>
+<div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>Mã sinh viên</th>
+          <th>Tên</th>
+          <th>Lớp</th>
+          <th>Năm học</th>
+          <th>Ngành</th>
+          <th>Ngôn ngữ</th>
+          <th>Vị trí</th>
+          <th>Ngày bắt đầu</th>
+          <th>Ngày kết thúc</th>
+          <th>Trạng thái</th>
+          <th>Người dùng</th>
+          <th>Số điện thoại</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.student_code }}</td>
+          <td>{{ student.student_name }}</td>
+          <td>{{ student.class_student }}</td>
+          <td>{{ student.year_of_study }}</td>
+          <td>{{ student.major }}</td>
+          <td>{{ student.language }}</td>
+          <td>{{ student.position }}</td>
+          <td>{{ student.start_date }}</td>
+          <td>{{ student.end_date }}</td>
+          <td>{{ student.student_status }}</td>
+          <td>{{ student.user_response.email }}</td>
+          <td>{{ student.user_response.phone_number }}</td>
+          <td style="cursor: pointer;" (click)="onMentorClick(student.student_code)"> xem bài báo cáo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  
