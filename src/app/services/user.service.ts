@@ -60,11 +60,6 @@ export class UserService {
     return this.http.post(`${this.apiUser}/register`, formData);
   }
 
-  // register(registerDTO: RegisterDTO): Observable<any> {
-  //   debugger
-  //   return this.http.post(this.apiRegister, registerDTO, this.apiConfig);
-  // }
-
   login(loginDTO: LoginDTO): Observable<any> {
     return this.http.post(this.apiLogin, loginDTO, this.apiConfig);
   }
@@ -136,17 +131,6 @@ export class UserService {
       // Handle the error as needed
     }
   }
-
-  getUsers( keyword: string, page: number, limit: number
-    ): Observable<User[]> {
-      const params = {
-        keyword: keyword,
-        page: page.toString(),
-        limit: limit.toString()
-      };
-      return this.http.get<User[]>(this.apiUser, { params });
-    }
-  
     getUserbyId(id: number): Observable<any> {
       const url = `${this.apiUser}/${id}`;
       return this.http.get<any>(url);
@@ -170,21 +154,4 @@ export class UserService {
       const url = `${this.apiUser}/logout`;
       return this.http.post(url, {});
     }
-    //grantRole/{userId}/{active}
-
-    blockOrEnableUser(userId: number, isActive: number): Observable<any> {
-      debugger
-      const url = `${this.apiUser}/block/${userId}/${isActive}`; 
-      console.log(url);
-      return this.http.put(url, {}); // Gửi một body rỗng vì endpoint không yêu cầu payload
-    }  
-    
-    grantRole(userId: number, roleId: number): Observable<any> {
-      const url = `${this.apiUser}/grantRole/${userId}/${roleId}`;
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json'
-      });
-  
-      return this.http.put(url, null, { headers });
-    } 
 }
