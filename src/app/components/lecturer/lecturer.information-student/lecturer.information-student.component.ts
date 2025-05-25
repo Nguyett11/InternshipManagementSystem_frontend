@@ -92,28 +92,4 @@ export class LecturerInformationStudentComponent {
       }
     });
   }
-
-  // getAllCompanies(){
-  //   this.companyService.getAllCompanies().subscribe({
-  //     next: (data) => {
-  //       this.companies = data; 
-  //       //console.log(this.companies);
-  //     },
-  //     error: (err) => {
-  //       console.error('Lỗi lấy danh sách công ty:', err);
-  //     }
-  //   });
-  // }
-
-  // getAllLecturers(){
-  //   this.lecturerService.getAllLecturers().subscribe({
-  //     next: (data) => {
-  //       this.lecturers = data; 
-  //       //console.log(this.lecturers);
-  //     },
-  //     error: (err) => {
-  //       console.error('Lỗi lấy danh sách giảng viên:', err);
-  //     }
-  //   });
-  // }
 }
