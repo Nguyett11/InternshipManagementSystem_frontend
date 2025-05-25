@@ -16,16 +16,6 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getStudents( keyword: string, page: number, limit: number
-  ): Observable<Student[]> {
-    const params = {
-      keyword: keyword,
-      page: page.toString(),
-      limit: limit.toString()
-    };
-    return this.http.get<Student[]>(this.apiGetStudents, { params });
-  }
-
   getStudentById(id: number): Observable<Student> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -73,46 +63,5 @@ export class StudentService {
       headers,
       params: { name }
     });
-  }
-
-  getStudentsByLecturer(keyword: string): Observable<Student[]> {
-    debugger
-    const params = { keyword: keyword };
-    return this.http.get<Student[]>(`${this.apiGetStudents}/by-lecturer`, { params });
-  }
-  
-  getStudentsByMentor(keyword: string): Observable<Student[]> {
-    debugger
-    const params = { keyword: keyword };
-    return this.http.get<Student[]>(`${this.apiGetStudents}/by-mentor`, { params });
-  }
-
-  getDetailStudent(studentCode: number): Observable<Student> {
-    return this.http.get<Student>(`${this.apiGetStudents}/${studentCode}`);
   } 
-
-  getDetailStudentByToken(): Observable<Student> {
-    return this.http.get<Student>(`${this.apiGetStudents}/by-token`);
-  }
-
-  getDetailLecturerByToken(): Observable<any> {
-    return this.http.get<any>(`${this.apiGetStudents}/lecturer`);
-  }
-
-  getDetailMentorByToken(): Observable<any> {
-    return this.http.get<any>(`${this.apiGetStudents}/mentor`);
-  }
-
-  insertStudent(body: any): Observable<any> {
-    console.log(body);
-    return this.http.post(`${this.apiGetStudents}`, body);
-  }
-
-  getMentorOfStudent(): Observable<MentorOfStudent> {
-    return this.http.get<MentorOfStudent>(`${this.apiGetStudents}/mentor`);
-  }
-
-  getLecturerOfStudent(keyword: string): Observable<LecturerOfStudent> {
-    return this.http.get<LecturerOfStudent>(`${this.apiGetStudents}/lecturer`);
-  }  
 }
