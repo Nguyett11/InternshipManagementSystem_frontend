@@ -1,3 +1,5 @@
+import { Grading } from "./grading";
+
 export interface Submission{
     id: number;
     student_name: string;
@@ -6,5 +8,6 @@ export interface Submission{
     student_code: number;
     file: string;
     submission_date: Date;
-    status_submission: string;
+    status: string;
+    //grading: Grading;
 }

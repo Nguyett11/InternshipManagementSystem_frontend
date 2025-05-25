@@ -1,0 +1,54 @@
+<div class="section-header animate-fade-in">
+    <i class="bi bi-person-vcard-fill"></i> THÔNG TIN GIẢNG VIÊN
+</div>
+<div class="content-card animate-fade-in">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-container">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture" class="profile-avatar">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">{{this.lecturer.lecturer_name}}</h1>
+                <div class="profile-id">
+                    <i class="bi bi-mortarboard-fill fs-5 text-primary"></i>
+                    Trình độ: <strong>Thạc sĩ</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="profileTabsContent">
+            <!-- Personal Information Tab -->
+            <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                <div class="info-section">
+                    <h3 class="info-section-title">
+                        <i class="bi bi-telephone-fill"></i> Thông tin liên hệ
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-phone-fill"></i> Số điện thoại</div>
+                            <div class="info-value">{{this.user.phone_number}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-envelope-fill"></i> Email</div>
+                            <div class="info-value">{{this.user.email}}</div>
+                        </div>
+                    </div>
+
+                    <h3 class="info-section-title">
+                        <i class="bi bi-info-circle-fill"></i> Thông tin giảng dạy
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-building-fill"></i> Phòng ban</div>
+                            <div class="info-value">{{this.lecturer.department}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-person-workspace"></i> Vị trí</div>
+                            <div class="info-value">Giảng viên</div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

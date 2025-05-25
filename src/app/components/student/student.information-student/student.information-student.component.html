@@ -1,0 +1,507 @@
+<div class="section-header animate-fade-in">
+    <i class="bi bi-person-vcard-fill"></i> THÔNG TIN CỦA TÔI
+</div>
+<div class="content-card animate-fade-in">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-container">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture" class="profile-avatar">
+                <div class="profile-avatar-badge">
+                    <i class="bi bi-camera"></i>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">{{this.user.full_name}}</h1>
+                <div class="profile-id">
+                    <i class="bi bi-person-badge fs-5 text-primary"></i>
+                    Mã sinh viên: <strong>{{this.student.student_code}}</strong>
+                </div>
+                <div class="profile-actions">
+                    <!-- <button class="btn btn-primary btn-profile">
+                        <i class="bi bi-pencil-square"></i> Update Information
+                    </button> -->
+                    <button class="btn btn-outline-primary btn-profile">
+                        <i class="bi bi-key"></i> Đổi mật khẩu
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="true">
+                    <i class="bi bi-person"></i> <span>Thông tin cá nhân</span>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="academic-tab" data-bs-toggle="tab" data-bs-target="#academic" type="button" role="tab" aria-controls="academic" aria-selected="false">
+                    <i class="bi bi-mortarboard"></i> <span>Hồ sơ thực tập</span>
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="profileTabsContent">
+            <!-- Personal Information Tab -->
+            <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                <div class="info-section">
+                    <div class="info-section">
+                        <h3 class="info-section-title">
+                            <i class="bi bi-telephone"></i> Thông tin liên hệ
+                        </h3>
+                        <div class="info-card">
+                            <div class="info-item">
+                                <div class="info-label"><i class="bi bi-phone"></i> Số điện thoại</div>
+                                <div class="info-value">{{this.user.phone_number}}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label"><i class="bi bi-envelope"></i> Email</div>
+                                <div class="info-value">{{this.user.email}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="info-section-title">
+                        <i class="bi bi-person-lines-fill"></i> Thông tin cá nhân
+                    </h3>
+                    <div class="info-card">
+
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-calendar3"></i> Ngày sinh</div>
+                            <div class="info-value">{{ user.date_of_birth | date: 'dd/MM/yyyy' }}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-gender-ambiguous"></i> Giới tính</div>
+                            <div class="info-value">{{this.user.gender}}</div>
+                        </div>
+                        <!-- <div class="info-item">
+                            <div class="info-label"><i class="bi bi-card-text"></i> ID Number</div>
+                            <div class="info-value">052200001234</div>
+                        </div> -->
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-briefcase"></i> Vai trò</div>
+                            <div class="info-value">{{this.user.desired_role}}</div>
+                        </div>
+                        <!-- <div class="info-item">
+                            <div class="info-label"><i class="bi bi-person-gear"></i> Desired Role</div>
+                            <div class="info-value">Software Engineer</div>
+                        </div> -->
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-toggle-on"></i> Trạng thái</div>
+                            <div class="info-value">
+                                <span class="badge bg-success">{{this.user.is_active}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-footer">
+                    <button type="button" class="btn btn-primary" (click)="showUpdateForm('personal-form')">
+                        <i class="bi bi-pencil-square"></i> Cập nhật thông tin cơ bản
+                    </button>
+                </div>
+                <!-- Form cập nhật thông tin cơ bản -->
+                <div class="update-form-container" id="personal-form">
+                    
+                    <div class="update-form-header">
+                        <h3 class="update-form-title">
+                            <i class="bi bi-person-lines-fill"></i> Cập nhật thông tin cơ bản
+                        </h3>
+                        <button type="button" class="update-form-close" (click)="hideUpdateForm('personal-form')">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <form [formGroup]="userForm">
+                        <!-- <pre>{{ userForm.value | json }}</pre> -->
+                        <div class="row g-4">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="full_name" class="form-label required-field">Họ và tên</label>
+                              <input type="text" class="form-control" id="full_name" formControlName="full_name" placeholder="Nhập họ và tên" required>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="student_code" class="form-label required-field">Mã sinh viên</label>
+                              <input type="text" class="form-control" id="student_code" [value]="student?.student_code" placeholder="Nhập mã sinh viên" required readonly>
+                              <small class="text-muted">Mã sinh viên không thể thay đổi</small>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="date_of_birth" class="form-label">Ngày sinh</label>
+                              <input type="date" class="form-control" id="date_of_birth" formControlName="date_of_birth">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="gender" class="form-label">Giới tính</label>
+                              <select class="form-select" id="gender" formControlName="gender">
+                                <option value="nam">Nam</option>
+                                <option value="nữ">Nữ</option>
+                                <option value="khác">Khác</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="email" class="form-label">Email</label>
+                              <input type="text" class="form-control" id="email" formControlName="email">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="phone_number" class="form-label">Số điện thoại</label>
+                              <input type="text" class="form-control" id="phone_number" formControlName="phone_number">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="update-form-footer">
+                            <div>
+                                <button type="button" class="btn btn-outline" onclick="resetPersonalForm()">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                                </button>
+                                <button type="button" class="btn btn-outline-info" onclick="loadProfileData('personal')">
+                                    <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-secondary me-2" onclick="hideUpdateForm('personal-form')">
+                                    <i class="bi bi-x-circle"></i> Hủy
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="submitUser()">
+                                    <i class="bi bi-check-circle"></i> Lưu thay đổi
+                                </button>
+                            </div>
+                        </div>
+                      </form>                    
+                </div>
+            </div>
+
+            <!-- Contact Information Tab -->
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                
+
+                <div class="info-section">
+                    <h3 class="info-section-title">
+                        <i class="bi bi-geo-alt"></i> Permanent Address
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-globe"></i> Country</div>
+                            <div class="info-value">Vietnam</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-geo-alt"></i> Province/City</div>
+                            <div class="info-value">Bình Định</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-pin-map"></i> District</div>
+                            <div class="info-value">Quy Nhơn</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-geo"></i> Ward/Commune</div>
+                            <div class="info-value">Nguyễn Văn Cừ</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-house"></i> Detailed Address</div>
+                            <div class="info-value">123 Trần Hưng Đạo Street</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3 class="info-section-title">
+                        <i class="bi bi-house"></i> Temporary Address
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-globe"></i> Country</div>
+                            <div class="info-value">Vietnam</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-geo-alt"></i> Province/City</div>
+                            <div class="info-value">Bình Định</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-pin-map"></i> District</div>
+                            <div class="info-value">Quy Nhơn</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-geo"></i> Ward/Commune</div>
+                            <div class="info-value">Ghềnh Ráng</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-house"></i> Detailed Address</div>
+                            <div class="info-value">Dormitory, Quy Nhon University</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-footer">
+                    <button type="button" class="btn btn-primary" (click)="showUpdateForm('contact-form')">
+                        <i class="bi bi-pencil-square"></i> Cập nhật thông tin sinh viên
+                    </button>
+                </div>
+                <!-- Form cập nhật thông tin liên hệ -->
+                <div class="update-form-container" id="contact-form">
+                    <div class="update-form-header">
+                        <h3 class="update-form-title">
+                            <i class="bi bi-telephone"></i> Cập nhật thông tin sinh viên
+                        </h3>
+                        <button type="button" class="update-form-close" (click)="hideUpdateForm('contact-form')">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="form-label required-field">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Nhập địa chỉ email" value="letrungdung@gmail.com" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" class="form-label required-field">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="phone" name="phone"
+                                    placeholder="Nhập số điện thoại" value="0987654321" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address" class="form-label">Địa chỉ hiện tại</label>
+                                <input type="text" class="form-control" id="address" name="address"
+                                    placeholder="Nhập địa chỉ hiện tại" value="123 Trần Hưng Đạo, Quy Nhơn, Bình Định">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="province" class="form-label">Tỉnh/Thành phố</label>
+                                <select class="form-select" id="province" name="province">
+                                    <option value="" disabled>Chọn tỉnh/thành phố</option>
+                                    <option value="Bình Định" selected>Bình Định</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="district" class="form-label">Quận/Huyện</label>
+                                <select class="form-select" id="district" name="district">
+                                    <option value="" disabled>Chọn quận/huyện</option>
+                                    <option value="Thành phố Quy Nhơn" selected>Thành phố Quy Nhơn</option>
+                                    <option value="Huyện Tuy Phước">Huyện Tuy Phước</option>
+                                    <option value="Huyện An Nhơn">Huyện An Nhơn</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ward" class="form-label">Phường/Xã</label>
+                                <select class="form-select" id="ward" name="ward">
+                                    <option value="" disabled>Chọn phường/xã</option>
+                                    <option value="Phường Nguyễn Văn Cừ" selected>Phường Nguyễn Văn Cừ</option>
+                                    <option value="Phường Trần Phú">Phường Trần Phú</option>
+                                    <option value="Phường Lê Hồng Phong">Phường Lê Hồng Phong</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-form-footer">
+                        <div>
+                            <button type="button" class="btn btn-outline" onclick="resetContactForm()">
+                                <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                            </button>
+                            <button type="button" class="btn btn-outline-info" onclick="loadProfileData('contact')">
+                                <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary me-2" onclick="hideUpdateForm('contact-form')">
+                                <i class="bi bi-x-circle"></i> Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="saveContactInfo()">
+                                <i class="bi bi-check-circle"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information Tab -->
+            <div class="tab-pane fade" id="academic" role="tabpanel" aria-labelledby="academic-tab">
+                <div class="info-section">
+                    <h3 class="info-section-title">
+                        <i class="bi bi-mortarboard"></i> Hồ sơ thực tập
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-people"></i> Lớp</div>
+                            <div class="info-value">{{this.student.class_student}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-code-square"></i> Chuyên ngành</div>
+                            <div class="info-value">{{this.student.major}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-calendar-week"></i> Năm học</div>
+                            <div class="info-value">{{this.student.year_of_study}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-building"></i> Công ty</div>
+                            <div class="info-value">{{this.company_name}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-person-badge"></i> Mentor</div>
+                            <div class="info-value">{{this.mentor_name}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-person-video2"></i> Giảng viên</div>
+                            <div class="info-value">{{this.lecturer_name}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-calendar-event"></i> Ngày bắt đầu</div>
+                            <div class="info-value">{{this.student.start_date | date: 'dd/MM/yyyy'}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-calendar-x"></i> Ngày kết thúc</div>
+                            <div class="info-value">{{this.student.end_date | date: 'dd/MM/yyyy'}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-translate"></i> Ngôn ngữ</div>
+                            <div class="info-value">{{this.student.language}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-briefcase-fill"></i> Vị trí</div>
+                            <div class="info-value">{{this.student.position}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-footer">
+                    <button type="button" class="btn btn-primary" (click)="showUpdateForm('academic-form')">
+                        <i class="bi bi-pencil-square"></i> Cập nhật hồ sơ thực tập
+                    </button>
+                </div>
+                <!-- Form cập nhật thông tin học tập -->
+                <form [formGroup]="academicForm">
+                    <div class="update-form-container" id="academic-form">
+                        <div class="update-form-header">
+                            <h3 class="update-form-title">
+                                <i class="bi bi-mortarboard"></i> Cập nhật hồ sơ thực tập
+                            </h3>
+                            <button type="button" class="update-form-close" (click)="hideUpdateForm('academic-form')">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="student_code" class="form-label">Mã sinh viên</label>
+                                  <input type="number" class="form-control" id="student_code" formControlName="student_code">
+                                </div>
+                              </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="class_student" class="form-label">Lớp</label>
+                                  <input type="text" class="form-control" id="class_student" formControlName="class_student">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="major" class="form-label">Khoa</label>
+                                  <select class="form-select" id="major" formControlName="major">
+                                    <option value="" disabled>Chọn khoa</option>
+                                    <option value="Công nghệ thông tin" selected>Công nghệ thông tin</option>
+                                    <option value="Kinh tế">Kinh tế</option>
+                                    <option value="Ngoại ngữ">Ngoại ngữ</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="year_of_study" class="form-label">Năm học</label>
+                                  <input type="number" class="form-control" id="year_of_study" formControlName="year_of_study">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="company_id" class="form-label">Công ty</label>
+                                  <select class="form-select" id="company_id" formControlName="company_id">
+                                    <option value="" disabled>Chọn Công ty</option>
+                                    <option *ngFor="let company of companies" [value]="company.company_id">
+                                      {{ company.company_name }}
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="mentor_id" class="form-label">Mentor</label>
+                                  <select class="form-select" id="mentor_id" formControlName="mentor_id">
+                                    <option value="" disabled>Chọn Mentor</option>
+                                    <option *ngFor="let mentor of mentors" [value]="mentor.mentor_id">
+                                      {{ mentor.mentor_name }}
+                                    </option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="lecturer_id" class="form-label">Giảng viên</label>
+                                  <select class="form-select" id="lecturer_id" formControlName="lecturer_id">
+                                    <option value="" disabled>Chọn Giảng viên</option>
+                                    <option *ngFor="let lecturer of lecturers" [value]="lecturer.lecturer_id">
+                                      {{ lecturer.lecturer_name }}
+                                    </option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="start_date" class="form-label">Ngày bắt đầu</label>
+                                  <input type="date" class="form-control" id="start_date" formControlName="start_date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="end_date" class="form-label">Ngày kết thức</label>
+                                  <input type="date" class="form-control" id="end_date" formControlName="end_date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="language" class="form-label">Ngôn ngữ</label>
+                                  <input type="text" class="form-control" id="language" formControlName="language">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="position" class="form-label">Vị trí</label>
+                                  <input type="text" class="form-control" id="position" formControlName="position">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-form-footer">
+                            <div>
+                                <button type="button" class="btn btn-outline" onclick="resetAcademicForm()">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                                </button>
+                                <button type="button" class="btn btn-outline-info" onclick="loadProfileData('academic')">
+                                    <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-secondary me-2" onclick="hideUpdateForm('academic-form')">
+                                    <i class="bi bi-x-circle"></i> Hủy
+                                </button>
+                                <button type="button" class="btn btn-primary" (click)="submitStudent()">
+                                    <i class="bi bi-check-circle"></i> Lưu thay đổi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>       
+            </div>
+        </div>
+    </div>
+</div>

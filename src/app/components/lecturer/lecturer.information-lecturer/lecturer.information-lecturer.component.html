@@ -1,0 +1,701 @@
+<div class="section-header animate-fade-in">
+  <i class="bi bi-person-vcard-fill"></i> PERSONAL INFORMATION
+</div>
+<div class="content-card animate-fade-in">
+  <div class="profile-container">
+      <div class="profile-header">
+          <div class="profile-avatar-container">
+              <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Profile Picture" class="profile-avatar">
+              <div class="profile-avatar-badge">
+                  <i class="bi bi-camera"></i>
+              </div>
+          </div>
+          <div class="profile-info">
+              <h1 class="profile-name">{{user.full_name}}</h1>
+              <div class="profile-id">
+                  <i class="bi bi-person-badge fs-5 text-primary"></i>
+                  Khoa: <strong>{{lecturer.department}}</strong>
+              </div>
+              <div class="profile-actions">
+                  <!-- <button class="btn btn-primary btn-profile">
+                      <i class="bi bi-pencil-square"></i> Update Information
+                  </button> -->
+                  <button class="btn btn-outline-primary btn-profile">
+                      <i class="bi bi-key"></i> Đổi mật khẩu
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="true">
+                  <i class="bi bi-person"></i> <span>Thông tin cá nhân</span>
+              </button>
+          </li>
+          <li class="nav-item" role="presentation">
+              <button class="nav-link" id="academic-tab" data-bs-toggle="tab" data-bs-target="#academic" type="button" role="tab" aria-controls="academic" aria-selected="false">
+                  <i class="bi bi-mortarboard"></i> <span>Thông tin giảng dạy</span>
+              </button>
+          </li>
+      </ul>
+
+      <div class="tab-content" id="profileTabsContent">
+          <!-- Personal Information Tab -->
+          <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+              <div class="info-section">
+                  <div class="info-section">
+                      <h3 class="info-section-title">
+                          <i class="bi bi-telephone"></i> Thông tin liên hệ
+                      </h3>
+                      <div class="info-card">
+                          <div class="info-item">
+                              <div class="info-label"><i class="bi bi-phone"></i> Số điện thoại</div>
+                              <div class="info-value">{{user.phone_number}}</div>
+                          </div>
+                          <div class="info-item">
+                              <div class="info-label"><i class="bi bi-envelope"></i> Email</div>
+                              <div class="info-value">{{user.email}}</div>
+                          </div>
+                      </div>
+                  </div>
+                  <h3 class="info-section-title">
+                      <i class="bi bi-person-lines-fill"></i> Thông tin cá nhân
+                  </h3>
+                  <div class="info-card">
+
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-calendar3"></i> Ngày sinh</div>
+                          <div class="info-value">{{user.date_of_birth | date: 'dd/MM/yyyy' }}</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-gender-ambiguous"></i> Giới tính</div>
+                          <div class="info-value">{{user.gender}}</div>
+                      </div>
+                      <!-- <div class="info-item">
+                          <div class="info-label"><i class="bi bi-card-text"></i> ID Number</div>
+                          <div class="info-value">052200001234</div>
+                      </div> -->
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-briefcase"></i> Vai trò</div>
+                          <div class="info-value">{{user.desired_role}}</div>
+                      </div>
+                      <!-- <div class="info-item">
+                          <div class="info-label"><i class="bi bi-person-gear"></i> Desired Role</div>
+                          <div class="info-value">Software Engineer</div>
+                      </div> -->
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-toggle-on"></i> Trạng thái</div>
+                          <div class="info-value">
+                              <span class="badge bg-success">{{user.is_active}}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-footer">
+                  <button type="button" class="btn btn-primary" (click)="showUpdateForm('personal-form')">
+                      <i class="bi bi-pencil-square"></i> Cập nhật thông tin cơ bản
+                  </button>
+              </div>
+              <!-- Form cập nhật thông tin cơ bản -->
+              <div class="update-form-container" id="personal-form">
+                  
+                  <div class="update-form-header">
+                      <h3 class="update-form-title">
+                          <i class="bi bi-person-lines-fill"></i> Cập nhật thông tin cơ bản
+                      </h3>
+                      <button type="button" class="update-form-close" (click)="hideUpdateForm('personal-form')">
+                          <i class="bi bi-x-lg"></i>
+                      </button>
+                  </div>
+                  <form [formGroup]="userForm">
+                    <!-- <pre>{{ userForm.value | json }}</pre> -->
+                    <div class="row g-4">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="full_name" class="form-label required-field">Họ và tên</label>
+                          <input type="text" class="form-control" id="full_name" formControlName="full_name" placeholder="Nhập họ và tên" required>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="student_code" class="form-label required-field">Mã sinh viên</label>
+                          <input type="text" class="form-control" id="student_code" [value]="student?.student_code" placeholder="Nhập mã sinh viên" required readonly>
+                          <small class="text-muted">Mã sinh viên không thể thay đổi</small>
+                        </div>
+                      </div> -->
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="date_of_birth" class="form-label">Ngày sinh</label>
+                          <input type="date" class="form-control" id="date_of_birth" formControlName="date_of_birth">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="gender" class="form-label">Giới tính</label>
+                          <select class="form-select" id="gender" formControlName="gender">
+                            <option value="nam">Nam</option>
+                            <option value="nữ">Nữ</option>
+                            <option value="khác">Khác</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="text" class="form-control" id="email" formControlName="email">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="phone_number" class="form-label">Số điện thoại</label>
+                          <input type="text" class="form-control" id="phone_number" formControlName="phone_number">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="update-form-footer">
+                        <div>
+                            <button type="button" class="btn btn-outline" onclick="resetPersonalForm()">
+                                <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                            </button>
+                            <button type="button" class="btn btn-outline-info" onclick="loadProfileData('personal')">
+                                <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary me-2" (click)="hideUpdateForm('personal-form')">
+                                <i class="bi bi-x-circle"></i> Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary" (click)="submitUser()">
+                                <i class="bi bi-check-circle"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    </div>
+                  </form>  
+              </div>
+          </div>
+
+          <!-- Contact Information Tab -->
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              
+
+              <div class="info-section">
+                  <h3 class="info-section-title">
+                      <i class="bi bi-geo-alt"></i> Permanent Address
+                  </h3>
+                  <div class="info-card">
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-globe"></i> Country</div>
+                          <div class="info-value">Vietnam</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-geo-alt"></i> Province/City</div>
+                          <div class="info-value">Bình Định</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-pin-map"></i> District</div>
+                          <div class="info-value">Quy Nhơn</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-geo"></i> Ward/Commune</div>
+                          <div class="info-value">Nguyễn Văn Cừ</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-house"></i> Detailed Address</div>
+                          <div class="info-value">123 Trần Hưng Đạo Street</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="info-section">
+                  <h3 class="info-section-title">
+                      <i class="bi bi-house"></i> Temporary Address
+                  </h3>
+                  <div class="info-card">
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-globe"></i> Country</div>
+                          <div class="info-value">Vietnam</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-geo-alt"></i> Province/City</div>
+                          <div class="info-value">Bình Định</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-pin-map"></i> District</div>
+                          <div class="info-value">Quy Nhơn</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-geo"></i> Ward/Commune</div>
+                          <div class="info-value">Ghềnh Ráng</div>
+                      </div>
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-house"></i> Detailed Address</div>
+                          <div class="info-value">Dormitory, Quy Nhon University</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-footer">
+                  <button type="button" class="btn btn-primary" onclick="showUpdateForm('personal-form')">
+                      <i class="bi bi-pencil-square"></i> Cập nhật thông tin cơ bản
+                  </button>
+              </div>
+              <!-- Form cập nhật thông tin liên hệ -->
+              <div class="update-form-container" id="contact-form">
+                  <div class="update-form-header">
+                      <h3 class="update-form-title">
+                          <i class="bi bi-telephone"></i> Cập nhật thông tin liên hệ
+                      </h3>
+                      <button type="button" class="update-form-close" onclick="hideUpdateForm('contact-form')">
+                          <i class="bi bi-x-lg"></i>
+                      </button>
+                  </div>
+                  <div class="row g-4">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="email" class="form-label required-field">Email</label>
+                              <input type="email" class="form-control" id="email" name="email"
+                                  placeholder="Nhập địa chỉ email" value="letrungdung@gmail.com" required>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="phone" class="form-label required-field">Số điện thoại</label>
+                              <input type="tel" class="form-control" id="phone" name="phone"
+                                  placeholder="Nhập số điện thoại" value="0987654321" required>
+                          </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label for="address" class="form-label">Địa chỉ hiện tại</label>
+                              <input type="text" class="form-control" id="address" name="address"
+                                  placeholder="Nhập địa chỉ hiện tại" value="123 Trần Hưng Đạo, Quy Nhơn, Bình Định">
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="province" class="form-label">Tỉnh/Thành phố</label>
+                              <select class="form-select" id="province" name="province">
+                                  <option value="" disabled>Chọn tỉnh/thành phố</option>
+                                  <option value="Bình Định" selected>Bình Định</option>
+                                  <option value="Hà Nội">Hà Nội</option>
+                                  <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                  <option value="Đà Nẵng">Đà Nẵng</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="district" class="form-label">Quận/Huyện</label>
+                              <select class="form-select" id="district" name="district">
+                                  <option value="" disabled>Chọn quận/huyện</option>
+                                  <option value="Thành phố Quy Nhơn" selected>Thành phố Quy Nhơn</option>
+                                  <option value="Huyện Tuy Phước">Huyện Tuy Phước</option>
+                                  <option value="Huyện An Nhơn">Huyện An Nhơn</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="ward" class="form-label">Phường/Xã</label>
+                              <select class="form-select" id="ward" name="ward">
+                                  <option value="" disabled>Chọn phường/xã</option>
+                                  <option value="Phường Nguyễn Văn Cừ" selected>Phường Nguyễn Văn Cừ</option>
+                                  <option value="Phường Trần Phú">Phường Trần Phú</option>
+                                  <option value="Phường Lê Hồng Phong">Phường Lê Hồng Phong</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="update-form-footer">
+                      <div>
+                          <button type="button" class="btn btn-outline" onclick="resetContactForm()">
+                              <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                          </button>
+                          <button type="button" class="btn btn-outline-info" onclick="loadProfileData('contact')">
+                              <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                          </button>
+                      </div>
+                      <div>
+                          <button type="button" class="btn btn-secondary me-2" onclick="hideUpdateForm('contact-form')">
+                              <i class="bi bi-x-circle"></i> Hủy
+                          </button>
+                          <button type="button" class="btn btn-primary" onclick="saveContactInfo()">
+                              <i class="bi bi-check-circle"></i> Lưu thay đổi
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Academic Information Tab -->
+          <div class="tab-pane fade" id="academic" role="tabpanel" aria-labelledby="academic-tab">
+              <div class="info-section">
+                  <h3 class="info-section-title">
+                      <i class="bi bi-mortarboard"></i> Thông tin giảng dạy
+                  </h3>
+                  <div class="info-card">
+                      <div class="info-item">
+                          <div class="info-label"><i class="bi bi-people"></i>Phòng ban</div>
+                          <div class="info-value">{{lecturer.department}}</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-footer">
+                  <button type="button" class="btn btn-primary" (click)="showUpdateForm('lecturer-form')">
+                      <i class="bi bi-pencil-square"></i> Cập nhật thông tin giảng dạy
+                  </button>
+              </div>
+              <!-- Form cập nhật thông tin học tập -->
+              <div class="update-form-container" id="lecturer-form">
+                  <div class="update-form-header">
+                      <h3 class="update-form-title">
+                          <i class="bi bi-mortarboard"></i> Cập nhật thông tin học tập
+                      </h3>
+                      <button type="button" class="update-form-close" (click)="hideUpdateForm('lecturer-form')">
+                          <i class="bi bi-x-lg"></i>
+                      </button>
+                  </div>
+                  <form [formGroup]="lecturerForm">
+                    <div class="row g-4">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="full_name" class="form-label required-field">Phòng ban</label>
+                          <input type="text" class="form-control" id="full_name" formControlName="department" placeholder="Nhập họ và tên" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="update-form-footer">
+                        <div>
+                            <button type="button" class="btn btn-outline" onclick="resetPersonalForm()">
+                                <i class="bi bi-arrow-counterclockwise"></i> Khôi phục mặc định
+                            </button>
+                            <button type="button" class="btn btn-outline-info" onclick="loadProfileData('personal')">
+                                <i class="bi bi-cloud-download"></i> Cập nhật từ hồ sơ
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary me-2" (click)="hideUpdateForm('personal-form')">
+                                <i class="bi bi-x-circle"></i> Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary" (click)="submitLecturer()">
+                                <i class="bi bi-check-circle"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    </div>
+                  </form> 
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- <script>
+  // Dữ liệu mẫu
+  const profileData = {
+      personal: [
+          { id: 'full_name', icon: 'bi-person', label: 'Họ và tên', value: 'Lê Trung Dũng' },
+          { id: 'date_of_birth', icon: 'bi-calendar3', label: 'Ngày sinh', value: '2000-08-15' },
+          { id: 'gender', icon: 'bi-gender-ambiguous', label: 'Giới tính', value: 'male' },
+          { id: 'id_number', icon: 'bi-card-text', label: 'Số CMND/CCCD', value: '052200001234' },
+          { id: 'id_issue_date', icon: 'bi-calendar-date', label: 'Ngày cấp', value: '2018-09-20' }
+      ],
+      contact: [
+          { id: 'email', icon: 'bi-envelope', label: 'Email cá nhân', value: 'letrungdung@gmail.com' },
+          { id: 'phone', icon: 'bi-phone', label: 'Số điện thoại', value: '0987654321' },
+          { id: 'address', icon: 'bi-house', label: 'Địa chỉ', value: '123 Trần Hưng Đạo, Quy Nhơn, Bình Định' },
+          { id: 'province', icon: 'bi-geo-alt', label: 'Tỉnh/Thành phố', value: 'Bình Định' },
+          { id: 'district', icon: 'bi-pin-map', label: 'Quận/Huyện', value: 'Thành phố Quy Nhơn' },
+          { id: 'ward', icon: 'bi-geo', label: 'Phường/Xã', value: 'Phường Nguyễn Văn Cừ' }
+      ],
+      academic: [
+          { id: 'faculty', icon: 'bi-building', label: 'Khoa', value: 'Công nghệ thông tin' },
+          { id: 'major', icon: 'bi-code-square', label: 'Chuyên ngành', value: 'Công nghệ phần mềm' },
+          { id: 'class', icon: 'bi-people', label: 'Lớp', value: '22KTPM01' },
+          { id: 'academic_year', icon: 'bi-calendar-range', label: 'Khóa học', value: '2022-2026' }
+      ]
+  };
+
+  // Hiển thị form cập nhật
+  function showUpdateForm(formId) {
+      document.getElementById(formId).classList.add('show');
+      window.scrollTo({ top: document.getElementById(formId).offsetTop, behavior: 'smooth' });
+  }
+
+  // Ẩn form cập nhật
+  function hideUpdateForm(formId) {
+      document.getElementById(formId).classList.remove('show');
+  }
+
+  // Khôi phục mặc định cho từng form
+  function resetPersonalForm() {
+      if (confirm('Bạn có chắc chắn muốn khôi phục thông tin cơ bản mặc định?')) {
+          document.getElementById('full_name').value = 'Lê Trung Dũng';
+          document.getElementById('date_of_birth').value = '2000-08-15';
+          document.getElementById('gender').value = 'male';
+          document.getElementById('id_number').value = '052200001234';
+          document.getElementById('id_issue_date').value = '2018-09-20';
+      }
+  }
+
+  function resetContactForm() {
+      if (confirm('Bạn có chắc chắn muốn khôi phục thông tin liên hệ mặc định?')) {
+          document.getElementById('email').value = 'letrungdung@gmail.com';
+          document.getElementById('phone').value = '0987654321';
+          document.getElementById('address').value = '123 Trần Hưng Đạo, Quy Nhơn, Bình Định';
+          document.getElementById('province').value = 'Bình Định';
+          document.getElementById('district').value = 'Thành phố Quy Nhơn';
+          document.getElementById('ward').value = 'Phường Nguyễn Văn Cừ';
+      }
+  }
+
+  function resetAcademicForm() {
+      if (confirm('Bạn có chắc chắn muốn khôi phục thông tin học tập mặc định?')) {
+          document.getElementById('faculty').value = 'Công nghệ thông tin';
+          document.getElementById('major').value = 'Công nghệ phần mềm';
+          document.getElementById('class').value = '22KTPM01';
+          document.getElementById('academic_year').value = '2022-2026';
+      }
+  }
+
+  // Khôi phục tất cả các form
+  function resetAllForms() {
+      if (confirm('Bạn có chắc chắn muốn khôi phục tất cả thông tin mặc định?')) {
+          resetPersonalForm();
+          resetContactForm();
+          resetAcademicForm();
+      }
+  }
+
+  // Hủy tất cả thay đổi
+  function cancelAllChanges() {
+      if (confirm('Bạn có chắc chắn muốn hủy tất cả thay đổi?')) {
+          hideUpdateForm('personal-form');
+          hideUpdateForm('contact-form');
+          hideUpdateForm('academic-form');
+          resetAllForms();
+      }
+  }
+
+  // Lưu thông tin cá nhân
+  function savePersonalInfo() {
+      // Kiểm tra dữ liệu
+      if (!document.getElementById('full_name').value.trim()) {
+          alert('Vui lòng nhập họ và tên!');
+          return;
+      }
+      
+      // Hiển thị thông báo thành công
+      alert('Đã cập nhật thông tin cơ bản thành công!');
+      
+      // Ẩn form cập nhật
+      hideUpdateForm('personal-form');
+  }
+
+  // Lưu thông tin liên hệ
+  function saveContactInfo() {
+      // Kiểm tra dữ liệu
+      if (!document.getElementById('email').value.trim()) {
+          alert('Vui lòng nhập email!');
+          return;
+      }
+      
+      if (!document.getElementById('phone').value.trim()) {
+          alert('Vui lòng nhập số điện thoại!');
+          return;
+      }
+      
+      // Hiển thị thông báo thành công
+      alert('Đã cập nhật thông tin liên hệ thành công!');
+      
+      // Ẩn form cập nhật
+      hideUpdateForm('contact-form');
+  }
+
+  // Lưu thông tin học tập
+  function saveAcademicInfo() {
+      // Hiển thị thông báo thành công
+      alert('Đã cập nhật thông tin học tập thành công!');
+      
+      // Ẩn form cập nhật
+      hideUpdateForm('academic-form');
+  }
+
+  // Lưu tất cả thay đổi
+  function saveAllChanges() {
+      // Kiểm tra dữ liệu
+      if (document.getElementById('personal-form').classList.contains('show')) {
+          if (!document.getElementById('full_name').value.trim()) {
+              alert('Vui lòng nhập họ và tên!');
+              return;
+          }
+      }
+      
+      if (document.getElementById('contact-form').classList.contains('show')) {
+          if (!document.getElementById('email').value.trim()) {
+              alert('Vui lòng nhập email!');
+              return;
+          }
+          
+          if (!document.getElementById('phone').value.trim()) {
+              alert('Vui lòng nhập số điện thoại!');
+              return;
+          }
+      }
+      
+      // Hiển thị thông báo thành công
+      alert('Đã lưu tất cả thay đổi thành công!');
+      
+      // Ẩn tất cả form cập nhật
+      hideUpdateForm('personal-form');
+      hideUpdateForm('contact-form');
+      hideUpdateForm('academic-form');
+  }
+
+  // Hiển thị modal cập nhật từ hồ sơ
+  function loadProfileData(type) {
+      // Cập nhật tiêu đề modal
+      document.getElementById('profileDataModalLabel').innerHTML = `
+          <i class="bi bi-cloud-download"></i> Cập nhật ${type === 'personal' ? 'thông tin cơ bản' : type === 'contact' ? 'thông tin liên hệ' : 'thông tin học tập'} từ hồ sơ
+      `;
+      
+      // Xóa dữ liệu cũ
+      document.getElementById('profileDataTable').innerHTML = '';
+      
+      // Thêm dữ liệu mới
+      const data = profileData[type];
+      let tableHTML = '';
+      
+      data.forEach(item => {
+          tableHTML += `
+              <tr>
+                  <td><i class="bi ${item.icon}"></i> ${item.label}</td>
+                  <td>${item.id === 'date_of_birth' || item.id === 'id_issue_date' ? formatDate(item.value) : item.id === 'gender' ? (item.value === 'male' ? 'Nam' : item.value === 'female' ? 'Nữ' : 'Khác') : item.value}</td>
+                  <td>
+                      <button class="btn btn-sm btn-primary" onclick="updateField('${item.id}', '${item.value}')">
+                          <i class="bi bi-arrow-right-circle"></i> Cập nhật
+                      </button>
+                  </td>
+              </tr>
+          `;
+      });
+      
+      document.getElementById('profileDataTable').innerHTML = tableHTML;
+      
+      // Cập nhật nút "Cập nhật tất cả"
+      document.getElementById('updateAllFieldsBtn').onclick = function() {
+          updateAllFields(type);
+      };
+      
+      // Hiển thị modal
+      const profileDataModal = new bootstrap.Modal(document.getElementById('profileDataModal'));
+      profileDataModal.show();
+  }
+
+  // Định dạng ngày tháng
+  function formatDate(dateString) {
+      const date = new Date(dateString);
+      return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  }
+
+  // Cập nhật một trường dữ liệu
+  function updateField(fieldId, value) {
+      const field = document.getElementById(fieldId);
+      if (field) {
+          field.value = value;
+          
+          // Hiệu ứng highlight trường vừa cập nh  {
+          field.value = value;
+          
+          // Hiệu ứng highlight trường vừa cập nhật
+          field.classList.add('border-primary');
+          setTimeout(() => {
+              field.classList.remove('border-primary');
+          }, 2000);
+          
+          // Hiển thị thông báo
+          const toastContainer = document.createElement('div');
+          toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+          toastContainer.style.zIndex = '11';
+          
+          toastContainer.innerHTML = `
+              <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                      <div class="toast-body">
+                          <i class="bi bi-check-circle-fill me-2"></i> Đã cập nhật trường "${fieldId}" thành công!
+                      </div>
+                      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+              </div>
+          `;
+          
+          document.body.appendChild(toastContainer);
+          const toastEl = toastContainer.querySelector('.toast');
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+          
+          setTimeout(() => {
+              toastContainer.remove();
+          }, 3000);
+      }
+  }
+
+  // Cập nhật tất cả các trường
+  function updateAllFields(type) {
+      switch(type) {
+          case 'personal':
+              // Thông tin cá nhân
+              profileData.personal.forEach(item => {
+                  updateField(item.id, item.value);
+              });
+              break;
+              
+          case 'contact':
+              // Thông tin liên hệ
+              profileData.contact.forEach(item => {
+                  updateField(item.id, item.value);
+              });
+              break;
+              
+          case 'academic':
+              // Thông tin học tập
+              profileData.academic.forEach(item => {
+                  updateField(item.id, item.value);
+              });
+              break;
+      }
+      
+      // Đóng modal
+      const profileDataModal = bootstrap.Modal.getInstance(document.getElementById('profileDataModal'));
+      profileDataModal.hide();
+      
+      // Hiển thị thông báo thành công
+      alert(`Đã cập nhật tất cả ${type === 'personal' ? 'thông tin cơ bản' : type === 'contact' ? 'thông tin liên hệ' : 'thông tin học tập'} từ hồ sơ thành công!`);
+  }
+
+  // Xử lý sự kiện khi người dùng nhấn vào avatar badge
+  document.addEventListener('DOMContentLoaded', function() {
+      const avatarBadge = document.querySelector('.profile-avatar-badge');
+      if (avatarBadge) {
+          avatarBadge.addEventListener('click', function() {
+              document.getElementById('avatar').click();
+          });
+      }
+
+      // Xử lý sự kiện khi người dùng chọn ảnh mới
+      const avatarInput = document.getElementById('avatar');
+      if (avatarInput) {
+          avatarInput.addEventListener('change', function() {
+              if (this.files && this.files[0]) {
+                  const reader = new FileReader();
+                  reader.onload = function(e) {
+                      document.querySelector('.profile-avatar').src = e.target.result;
+                  };
+                  reader.readAsDataURL(this.files[0]);
+              }
+          });
+      }
+  });
+</script> -->

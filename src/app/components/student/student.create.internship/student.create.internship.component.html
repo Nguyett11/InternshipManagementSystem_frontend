@@ -1,126 +1,274 @@
-<form #studentForm="ngForm">
-    <div>
-      <label for="student_code">Student Code:</label>
-      <input
-        type="text"
-        id="student_code"
-        [(ngModel)]="student_code"
-        name="student_code"
-        required
-      />
-    </div>
-  
-    <div>
-      <label for="student_name">Student Name:</label>
-      <input
-        type="text"
-        id="student_name"
-        [(ngModel)]="student_name"
-        name="student_name"
-        required
-      />
-    </div>
-  
-    <div>
-      <label for="class_student">Class:</label>
-      <input
-        type="text"
-        id="class_student"
-        [(ngModel)]="class_student"
-        name="class_student"
-      />
-    </div>
-  
-    <div>
-      <label for="major">Major:</label>
-      <input
-        type="text"
-        id="major"
-        [(ngModel)]="major"
-        name="major"
-      />
-    </div>
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-header">
+                  <h5 class="card-title"><i class="bi bi-mortarboard-fill me-2"></i>Thông Tin Sinh Viên Thực Tập</h5>
+                  <div class="card-subtitle">Vui lòng điền đầy đủ thông tin bên dưới</div>
+              </div>
+              <div class="card-body p-4">
+                  <form id="internshipForm" name="studentForm">
+                      <!-- Thông tin sinh viên -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-person-fill me-2"></i>Thông tin sinh viên</h3>
+                          <div class="row g-3">
+                              <div class="col-md-6">
+                                  <label for="student_code" class="form-label required-field">Mã sinh viên</label>
+                                  <input type="text" class="form-control" id="student_code" name="student_code" [(ngModel)]="student_code"
+                                      placeholder="Nhập mã sinh viên" required>
+                              </div>
+                              <div class="col-md-6">
+                                  <label for="student_name" class="form-label required-field">Họ tên sinh viên</label>
+                                  <input type="text" class="form-control" id="student_name" name="student_name" [(ngModel)]="student_name"
+                                      placeholder="Nhập họ tên sinh viên" required>
+                              </div>
+                              <div class="col-md-4">
+                                  <label for="class_student" class="form-label">Lớp</label>
+                                  <input type="text" class="form-control" id="class_student" name="class_student" [(ngModel)]="class_student"
+                                      placeholder="Nhập lớp" required>
+                              </div>
+                              <div class="col-md-4">
+                                  <label for="major" class="form-label">Chuyên ngành</label>
+                                  <input type="text" class="form-control" id="major" name="major" [(ngModel)]="major"
+                                      placeholder="Nhập chuyên ngành" required>
+                              </div>
+                              <div class="col-md-4">
+                                  <label for="year_of_study" class="form-label">Năm học</label>
+                                  <input type="number" class="form-control" id="year_of_study" name="year_of_study" [(ngModel)]="year_of_study"
+                                      placeholder="Nhập năm học" required>
+                              </div>
+                          </div>
+                      </div>
 
-    <div>
-      <label for="position">Position:</label>
-      <input
-        type="text"
-        id="position"
-        [(ngModel)]="position"
-        name="position"
-      />
-    </div>
+                      <!-- Thông tin thực tập -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-briefcase-fill me-2"></i>Thông tin thực tập</h3>
+                          <div class="row g-3">
+                              <div class="col-md-6">
+                                  <label for="position" class="form-label">Vị trí thực tập</label>
+                                  <input type="text" class="form-control" id="position" name="position" [(ngModel)]="position"
+                                      placeholder="Nhập vị trí thực tập" required>
+                              </div>
+                              <div class="col-md-6">
+                                  <label for="language" class="form-label">Ngôn ngữ/Công nghệ</label>
+                                  <input type="text" class="form-control" id="language" name="language" [(ngModel)]="language"
+                                      placeholder="Nhập ngôn ngữ/công nghệ" required>
+                              </div>
+                              <div class="col-md-6">
+                                  <label for="status" class="form-label">Trạng thái</label>
+                                  <select class="form-select" id="status" name="status" [(ngModel)]="status">
+                                      <option value="" selected disabled>Chọn trạng thái</option>
+                                      <option value="Not Started">Chưa bắt đầu</option>
+                                      <option value="In Progress">Đang thực hiện</option>
+                                      <option value="Completed">Đã hoàn thành</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
 
-    <div>
-      <label for="language">Language:</label>
-      <input
-        type="text"
-        id="language"
-        [(ngModel)]="language"
-        name="language"
-      />
-    </div>
+                      <!-- Giáo viên hướng dẫn -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-person-workspace me-2"></i>Giáo viên hướng dẫn</h3>
+                          <input type="hidden" id="mentor_id" name="mentor_id">
 
+                          <div class="mentor-selection-container">
+                              <div class="mentor-selection-header">
+                                  <div class="mentor-filter">
+                                      <select class="form-select" id="mentor_department">
+                                          <option value="" selected>Tất cả các bộ phận</option>
+                                          <option value="IT">Phòng IT</option>
+                                          <option value="HR">Phòng Nhân sự</option>
+                                          <option value="Marketing">Phòng Marketing</option>
+                                      </select>
+                                  </div>
+                                  <div class="mentor-search-container">
+                                    <input type="text" class="form-control" id="lecturer_search" placeholder="Tìm kiếm giáo viên..." name="searchTerm"
+                                    [(ngModel)]="searchTerm" (input)="searchLecturer()">
+                                  </div>
+                              </div>
 
-      <div>
-        <label for="status">Status:</label>
-        <select id="status" [(ngModel)]="status" name="status">
-          <option value="">Select status</option>
-          <option value="Not Started">Not Started</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-        </select>
+                              <div class="mentor-list">
+                                  <div *ngFor="let lecturer of lecturerList" class="mentor-item" >
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="mentor_radio" id="mentor" [value]="lecturer.lecturer_id" [(ngModel)]="lecturer_id">
+                                          <label class="form-check-label" ></label>
+                                      </div>
+                                      <div class="mentor-avatar">NV</div>
+                                      <div class="mentor-info" >
+                                          <div class="mentor-name">{{lecturer.lecturer_name}}</div>
+                                          <div class="mentor-id">{{lecturer.department}}</div>
+                                      </div>
+                                  </div>                              
+                              </div>
+
+                              <div class="pagination-container">
+                                  <div class="selected-count">Đã chọn: <span id="selected-mentor-count">0</span> giáo viên</div>
+                                  <nav aria-label="Mentor pagination">
+                                      <ul class="pagination pagination-sm mb-0">
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Previous">
+                                                  <span aria-hidden="true">&laquo;</span>
+                                              </a>
+                                          </li>
+                                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Người hướng dẫn tại công ty -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-person-badge-fill me-2"></i>Người hướng dẫn tại công ty</h3>
+                          <input type="hidden" id="company_mentor_id" name="company_mentor_id">
+
+                          <div class="mentor-selection-container">
+                              <div class="mentor-selection-header">
+                                  <div class="mentor-filter">
+                                      <select class="form-select" id="company_department">
+                                          <option value="" selected>Tất cả các bộ phận</option>
+                                          <option value="IT">Phòng IT</option>
+                                          <option value="HR">Phòng Nhân sự</option>
+                                          <option value="Marketing">Phòng Marketing</option>
+                                      </select>
+                                  </div>
+                                  <div class="mentor-search-container">
+                                    <input type="text" class="form-control" id="mentor_search" placeholder="Tìm kiếm người hướng dẫn..." name="searchTerm"
+                                    [(ngModel)]="searchTerm" (input)="searchMentor()">
+                                  </div>
+                              </div>
+
+                              <div class="mentor-list">
+                                  <div *ngFor="let mentor of mentorList" class="mentor-item">
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="company_mentor_radio" id="company_mentor1"
+                                          [value]="mentor.mentor_id" [(ngModel)]="mentor_id">
+                                          <label class="form-check-label" for="company_mentor1"></label>
+                                      </div>
+                                      <div class="mentor-avatar">NV</div>
+                                      <div class="mentor-info">
+                                          <div class="mentor-name">{{mentor.mentor_name}}</div>
+                                          <div class="mentor-id">{{mentor.position}}</div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="pagination-container">
+                                  <div class="selected-count">Đã chọn: <span id="selected-company-mentor-count">0</span> người hướng dẫn
+                                  </div>
+                                  <nav aria-label="Company mentor pagination">
+                                      <ul class="pagination pagination-sm mb-0">
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Previous">
+                                                  <span aria-hidden="true">&laquo;</span>
+                                              </a>
+                                          </li>
+                                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Công ty thực tập -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-building-fill me-2"></i>Công ty thực tập</h3>
+                          <input type="hidden" id="company_id" name="company_id">
+
+                          <div class="mentor-selection-container">
+                              <div class="mentor-selection-header">
+                                  <div class="mentor-filter">
+                                      <select class="form-select" id="company_type">
+                                          <option value="" selected>Tất cả các loại</option>
+                                          <option value="IT">Công nghệ thông tin</option>
+                                          <option value="Finance">Tài chính</option>
+                                          <option value="Manufacturing">Sản xuất</option>
+                                      </select>
+                                  </div>
+                                  <div class="mentor-search-container">
+                                      <input type="text" class="form-control" id="company_search" placeholder="Tìm kiếm công ty..." name="searchTerm"
+                                      [(ngModel)]="searchTerm" (input)="searchCompany()">
+                                      <!-- <button type="button" class="search-icon" (click)="search()">
+                                          <i class="bi bi-search" ></i>
+                                      </button> -->
+                                  </div>
+                              </div>
+
+                              <div class="mentor-list">
+                                  <div *ngFor="let company of companyList" class="mentor-item">
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="company_radio" id="company1" [value]="company.company_id" [(ngModel)]="company_id">
+                                          <label class="form-check-label" for="company1"></label>
+                                      </div>
+                                      <div class="mentor-avatar">FP</div>
+                                      <div class="mentor-info">
+                                          <div class="mentor-name">{{company.company_name}}</div>
+                                          <div class="mentor-id">{{company.address}}</div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="pagination-container">
+                                  <div class="selected-count">Đã chọn: <span id="selected-company-count">0</span> công ty</div>
+                                  <nav aria-label="Company pagination">
+                                      <ul class="pagination pagination-sm mb-0">
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Previous">
+                                                  <span aria-hidden="true">&laquo;</span>
+                                              </a>
+                                          </li>
+                                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                          <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Thời gian thực tập -->
+                      <div class="mb-4">
+                          <h3 class="section-title"><i class="bi bi-calendar-date-fill me-2"></i>Thời gian thực tập</h3>
+                          <div class="row g-3">
+                              <div class="col-md-6">
+                                  <label for="start_date" class="form-label">Ngày bắt đầu</label>
+                                  <input type="date" class="form-control" id="start_date" name="start_date" [(ngModel)]="start_date">
+                              </div>
+                              <div class="col-md-6">
+                                  <label for="end_date" class="form-label">Ngày kết thúc</label>
+                                  <input type="date" class="form-control" id="end_date" name="end_date" [(ngModel)]="end_date">
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                  <button type="button" class="btn btn-outline-secondary"
+                      onclick="document.getElementById('internshipForm').reset()">
+                      <i class="bi bi-x-circle me-2"></i>Nhập lại
+                  </button>
+                  <button type="submit" class="btn btn-primary" form="internshipForm" (click)="createInternship()">
+                      <i class="bi bi-save me-2"></i>Tạo hồ sơ thực tập
+                  </button>
+              </div>
+          </div>
       </div>
-  
-    <div>
-      <label for="year_of_study">Year of Study:</label>
-      <input
-        type="number"
-        id="year_of_study"
-        [(ngModel)]="year_of_study"
-        name="year_of_study"
-      />
-    </div>
-  
-    <div>
-      <label for="company_id">Company:</label>
-      <div class="">
-        <select id="company_id" [(ngModel)]="company_id" name="company_id">
-            <option value="" disabled selected>--- Select company ---</option>
-            <option *ngFor="let company of companyList" [value]="company.id">{{ company.company_name }}</option>
-        </select>
-      </div>    
-    </div>
-  
-    <div>
-      <label for="mentor_id">Mentor:</label>
-      <div class="">
-        <select id="mentor_id" [(ngModel)]="mentor_id" name="mentor_id">
-            <option value="" disabled selected>--- Select Mentor ---</option>
-            <option *ngFor="let mentor of mentorList" [value]="mentor.id">{{ mentor.mentor_name }}</option>
-        </select>
-      </div> 
-    </div>
-  
-    <div>
-      <label for="start_date">Start Date:</label>
-      <input
-        type="date"
-        id="start_date"
-        [(ngModel)]="start_date" 
-        name="start_date"
-      />
-    </div>
-    
-    <div>
-      <label for="end_date">End Date:</label>
-      <input
-        type="date"
-        id="end_date"
-        [(ngModel)]="end_date" 
-        name="end_date"
-      />
-    </div>
-    
-    <button class="btn btn-primary me-2" (click)="createInternship()" >Create Student</button>
-  </form>
+  </div>
+</div>

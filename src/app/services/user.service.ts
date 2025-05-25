@@ -13,10 +13,10 @@ import { User } from "../models/user";
   providedIn: 'root'
 })
 export class UserService {
-  private apiRegister = `${environment.apiBaseUrl}/users/register`;
-  private apiLogin = `${environment.apiBaseUrl}/users/login`;
-  private apiUserDetail = `${environment.apiBaseUrl}/users/details`;
-  private apiUser = `${environment.apiBaseUrl}/users`;
+  private apiRegister = `${environment.apiBaseUrl}/Users/register`;
+  private apiLogin = `${environment.apiBaseUrl}/Users/login`;
+  private apiUser = `${environment.apiBaseUrl}/Users`;
+  private apiUserDetail = `${environment.apiBaseUrl}/Users/profile`;
 
   private http = inject(HttpClient);
   private httpUtilService = inject(HttpUtilService);  
@@ -43,13 +43,39 @@ export class UserService {
     return this.userId;
   }
 
-  register(registerDTO: RegisterDTO): Observable<any> {
-    debugger
-    return this.http.post(this.apiRegister, registerDTO, this.apiConfig);
+  register(user : User): Observable<any> {
+    const formData = new FormData();
+    formData.append('full_name', user.full_name);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+    formData.append('phone_number', user.phone_number);
+    formData.append('gender', user.gender);
+
+    const dateOfBirthStr = new Date(user.date_of_birth).toISOString();
+    formData.append('date_of_birth', dateOfBirthStr);
+    
+    formData.append('desired_role', user.desired_role);
+    formData.append('role_id', user.role_id.toString());
+
+    return this.http.post(`${this.apiUser}/register`, formData);
   }
+
+  // register(registerDTO: RegisterDTO): Observable<any> {
+  //   debugger
+  //   return this.http.post(this.apiRegister, registerDTO, this.apiConfig);
+  // }
 
   login(loginDTO: LoginDTO): Observable<any> {
     return this.http.post(this.apiLogin, loginDTO, this.apiConfig);
+  }
+
+  getUserById(id: number): Observable<User> {
+    const token = localStorage.getItem('token'); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<User>(`${this.apiUser}/${id}`, { headers });
   }
   
   getUserDetail(token: string) {
@@ -58,6 +84,14 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
     return this.http.get(this.apiUserDetail, { headers });
+  }
+
+  getAllUsers(): Observable<User[]> {
+    const token = localStorage.getItem('token'); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<User[]>(this.apiUser, { headers });
   }
   
   saveUserResponseToLocalStorage(userResponse?: UserResponse) {
@@ -114,12 +148,12 @@ export class UserService {
     }
   
     getUserbyId(id: number): Observable<any> {
-      const url = `${this.apiUser}/details/${id}`;
+      const url = `${this.apiUser}/${id}`;
       return this.http.get<any>(url);
     }
 
     updateUser(id: number, body: any): Observable<any> {
-      const url = `${this.apiUser}/details/${id}`;
+      const url = `${this.apiUser}/${id}`;
       return this.http.put<any>(url, body);
     }
 

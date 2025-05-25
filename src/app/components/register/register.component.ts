@@ -13,7 +13,8 @@ import { RegisterDTO } from '../../dtos/user/register.dto';
   selector: 'app-register',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -21,70 +22,73 @@ import { RegisterDTO } from '../../dtos/user/register.dto';
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
   // Khai báo các biến dữ liệu tương ứng với các trường dữ liệu trong form
-  fullName: string;
+  full_name: string;
   email: string;
-  phoneNumber: string;
+  phone_number: string;
   password: string;
-  retypePassword: string;
-  dateOfBirth: Date;
-  desiredRole: string;
+  retype_password: string;
+  date_of_birth: Date;
+  desired_role: string;
   gender: string;
+
+  // Trạng thái hiển thị mật khẩu
+  rememberMe: boolean = false; 
   constructor(private router: Router, private userService: UserService) {
-    this.fullName = '';
-    this.email= '';
-    this.phoneNumber = '';
-    this.password = '';
-    this.retypePassword = '';
-    this.gender = '';
-    this.desiredRole = '';
-    this.dateOfBirth = new Date();
-    this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear())
+    this.full_name = 'Bùi Ánh Nguyệt';
+    this.email= 'nguyet3@gmail.com';
+    this.phone_number = '0365355529';
+    this.password = '123456';
+    this.retype_password = '123456';
+    this.gender = 'Nam';
+    this.desired_role = 'Lecturer';
+    this.date_of_birth = new Date(2022-11-11);
     //inject tạo ra một đối tượng trong class
   }
-  register() {
-    const message = `fullName: ${this.fullName}` +
-      `phoneNumber: ${this.phoneNumber}` +
-      `password: ${this.password}` +
-      `retypePassword: ${this.retypePassword}` +
-      `gender: ${this.gender}` +
-      `desired_role: ${this.desiredRole}` +
-      `dateOfBirth = ${this.dateOfBirth}`
 
-    const registerDTO: RegisterDTO = {
-      "full_name": this.fullName,
-      "email": this.email,
-      "phone_number": this.phoneNumber,
-      "gender": this.gender,
-      "desired_role": this.desiredRole,
-      "password": this.password,
-      "retype_password": this.retypePassword,
-      "date_of_birth": this.dateOfBirth,
-      "role_id": 5
-    }
-    debugger
-    this.userService.register(registerDTO).subscribe({
-      next: (response: any) => {
-        debugger
-        const confirmation = window
-          .confirm('Đăng ký thành công, bạn hãy chờ ADMIN cho phép và cấp quyền cho bạn để có thể đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
-        if (confirmation) {
-          this.router.navigate(['/']);
+  register() {
+
+    const val: any = {
+    full_name : this.full_name,
+    email : this.email,
+    phone_number: this.phone_number,
+    gender : this.gender,
+    date_of_birth : this.date_of_birth,
+    desired_role : this.desired_role,
+    password : this.password,
+    is_active : false,
+    role_id : 0   
+    };
+
+    console.log(val);
+
+    this.userService.register(val).subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res.success) {
+          alert('Đăng ký thành công! ID: ' + res.user_id);
+        } else {
+          alert(res.message);
         }
       },
-      complete: () => {
-        debugger
-      },
-      error: (error: any) => {        
-        debugger  
-        alert(error?.error?.message ?? '')          
+      error: (err) => {
+        console.error(err);
+        alert('Đăng ký thất bại!');
       }
-  })
+    });
   }
-  checkPasswordsMatch() {
-    if (this.password !== this.retypePassword) {
-      this.registerForm.form.controls['retypePassword'].setErrors({ 'passwordMismatch': true });
+
+  check_passwords_match() {
+    if (this.password !== this.retype_password) {
+      this.registerForm.form.controls['retype_password'].setErrors({ 'passwordMismatch': true });
     } else {
-      this.registerForm.form.controls['retypePassword'].setErrors(null);
+      this.registerForm.form.controls['retype_password'].setErrors(null);
     }
   }
+  // Toggle hiển thị mật khẩu
+  toggle_password_visibility() {
+    // Nếu rememberMe = true, hiển thị mật khẩu, ngược lại ẩn đi
+    const type = this.rememberMe ? 'text' : 'password';
+    (document.getElementById('password') as HTMLInputElement).type = type;
+    (document.getElementById('retype_password') as HTMLInputElement).type = type;
+  }  
 }

@@ -27,9 +27,9 @@ import { LoginResponse } from '../../responses/user/login.response';
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  email: string = 'student@gmail.com';
+  email: string = 'mentor@gmail.com';
   password: string = '11062003cong';
-  user_id : number;
+  //user_id : number;
 
   roles: Role[] = []; // Mảng roles
   userResponse?: UserResponse
@@ -61,41 +61,39 @@ export class LoginComponent implements OnInit {
     const loginDTO: LoginDTO = {
       email: this.email,
       password: this.password,
-      user_id : this.user_id
+      //user_id : this.user_id
     };
     debugger
     this.userService.login(loginDTO).subscribe({
-      next: (response: LoginResponse) => {
+      next: (response) => {
         debugger
-        const { token } = response;
+        const { token } = response.data;
         this.tokenService.setToken(token);
-        //console.group(response.user_id);
-        // Lưu user_id vào dịch vụ
-        this.userService.setUserId(response.user_id);
-        // Lưu user_id vào localStorage (nếu cần)
-        localStorage.setItem('user_id', response.user_id.toString());
+
+        this.userService.setUserId(response.data.user_id);
+        //console.log(response.data.user_id);
+
+        // Lưu user_id vào localStorage 
+        if (response.data.user_id !== undefined && response.data.user_id !== null) {
+          localStorage.setItem('user_id', response.data.user_id.toString());
+        }        
          // In user_id ra console
-      console.log(`Logged in user_id: ${response.user_id}`);
+        console.log(`Logged in user_id: ${response.user_id}`, response.data.token);
        
         debugger
         this.userService.getUserDetail(token).subscribe({ // Lấy thông tin người dùng
           next: (response: any) => {
-            debugger
-            this.userResponse = {
-              ...response,
-              date_of_birth: new Date(response.date_of_birth),
-            };
             debugger;
             this.userService.saveUserResponseToLocalStorage(this.userResponse);
             debugger;
-            const roleName = this.userResponse?.role?.name;
-            if (roleName === 'ADMIN') {
+            const role = response.data.role_id;
+            if (role === 1) {
               this.router.navigate(['/admin']);
-            } else if (roleName === 'STUDENT') {
+            } else if (role === 2) {
               this.router.navigate(['/student']);
-            } else if (roleName === 'LECTURER') {
+            } else if (role === 3) {
               this.router.navigate(['/lecturer']);
-            } else if (roleName === 'MENTOR') {
+            } else if (role === 4) {
               this.router.navigate(['/mentor']);
             } else {
               alert('Unauthorized role');

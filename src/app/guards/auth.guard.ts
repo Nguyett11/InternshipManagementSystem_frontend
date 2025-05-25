@@ -15,7 +15,9 @@ import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from "@ang
   
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
       const isTokenExpired = this.tokenService.isTokenExpired();
-      const isUserIdValid = this.tokenService.getUserId() > 0;
+      //const isUserIdValid = this.tokenService.getUserId() > 0;
+      const userId = this.tokenService.getUserId() || Number(localStorage.getItem('user_id'));
+      const isUserIdValid = userId > 0;
       if (!isTokenExpired && isUserIdValid) {
         return true;
       } else {

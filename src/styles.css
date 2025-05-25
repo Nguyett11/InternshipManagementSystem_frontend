@@ -1,50 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
 :root {
-  --primary: #5048e5;
-  --primary-dark: #3832a0;
-  --primary-color: #1E40AF;
-  --primary-light: #3B82F6;
-  --secondary: #10b981;
-  --secondary-color: #10B981;
-  --danger: #f44336;
-  --warning: #ffb400;
-  --dark: #111827;
-  --light-dark: #374151;
-  --light-gray: #f3f4f6;
+  /* student,mentor,lecturer */
+  --primary-color: #1a73e8;
+  --primary-dark: #0d47a1;
+  --primary-light: #e8f0fe;
+  --secondary-color: #f8f9fa;
+  --accent-color: #4285f4;
+  --success-color: #0f9d58;
+  --warning-color: #f4b400;
+  --danger-color: #db4437;
+  --text-light: #ffffff;
+  --text-dark: #202124;
+  --text-muted: #5f6368;
+  --border-radius: 12px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.25s ease;
+  /* login, register */
   --border-color: #e5e7eb;
   --text-primary: #111827;
   --text-secondary: #6b7280;
-  --sidebar-width: 280px;
-  --header-height: 64px;
-  --primary-color: #1565c0;
-  --primary-dark: #0d47a1;
-  --primary-light: #e3f2fd;
-  --secondary-color: #0288d1;
-  --accent-color: #2979ff;
-  --text-primary: #212121;
-  --text-secondary: #757575;
-  --border-color: #e0e0e0;
-  --background-light: #f5f7fa;
-  --white: #ffffff;
-  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
-  --transition: all 0.3s ease;
   --border-radius: 8px;
-  --warning-color: #F59E0B;
-  --danger-color: #EF4444;
-  --info-color: #3B82F6;
-  --light-color: #F9FAFB;
-  --gray-100: #F3F4F6;
-  --gray-200: #E5E7EB;
-  --gray-300: #D1D5DB;
-  --gray-400: #9CA3AF;
-  --gray-500: #6B7280;
-  --gray-600: #4B5563;
+
+
+  /* admin*/
+  /* Color Variables */
+  --primary-color: #1a73e8;
+  --primary-dark: #0d47a1;
+  --primary-light: #e8f0fe;
+  --secondary-color: #f8f9fa;
+  --accent-color: #4285f4;
+  --success-color: #0f9d58;
+  --warning-color: #f4b400;
+  --danger-color: #db4437;
+  --text-light: #ffffff;
+  --text-dark: #202124;
+  --text-muted: #5f6368;
+
+  /* UI Variables */
+  --border-radius: 12px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.25s ease;
+
+  /* Derived Variables */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow: var(--box-shadow);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Grays */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
   --gray-700: #374151;
-  --gray-800: #1F2937;
+  --gray-800: #1f2937;
   --gray-900: #111827;
-  --sidebar-width: 280px;
-  --header-height: 64px;
+
+  /* Component-specific */
+  --header-text: var(--text-light);
+  --sidebar-bg: var(--primary-dark);
+  --sidebar-bg-gradient: linear-gradient(180deg, var(--primary-dark) 0%, #0a3b8c 100%);
+  --sidebar-text: var(--text-light);
+  --accent-light: var(--primary-light);
+  --primary: var(--primary-color);
+  --info: var(--accent-color);
+  --success: var(--success-color);
+  --warning: var(--warning-color);
+  --danger: var(--danger-color);
+  --card-gradient: linear-gradient(to bottom, var(--gray-50), white);
 }

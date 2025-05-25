@@ -3,6 +3,7 @@ import { Role } from "./role";
 export interface User {
    id : number;
    full_name : string;
+   profile_image: File;
    email : string;
    phone_number: string;
    gender : string;
@@ -10,5 +11,5 @@ export interface User {
    desired_role : string;
    password : string;
    is_active : boolean;
-   role: Role;
+   role_id : number;   
 }

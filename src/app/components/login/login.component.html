@@ -1,108 +1,109 @@
 <div class="login-container">
-  <!-- Login Form -->
-  <div class="login-form-container">
-      <div class="logo-container">
-          <!-- <div class="logo">
-              <span class="text-primary fw-bold">QN</span>
-          </div> -->
-          <div>
-              <h4 class="mb-0 fw-bold">Trường Đại học Quy Nhơn</h4>
-          </div>
-      </div>
-      
-      <h2 class="mt-4 mb-1 fw-bold">Đăng nhập</h2>
-      <p class="text-muted mb-4">Đăng nhập vào cổng thông tin sinh viên</p>
-      
-      <div class="login-alert">
-          <i class="fas fa-info-circle"></i>
-          <span>Sử dụng email và mật khẩu để đăng nhập</span>
-      </div>
-      
-      <form id="emailForm" onsubmit="return validateEmail()">
-          <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="username" placeholder="Nhập email"  name="email" [(ngModel)]="email" (input)="onEmailChange()">
-              <label for="username">Email</label>
-          </div>
-          
-          <div class="floating-input-group">
-              <div class="form-floating">
-                  <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="pswd" [(ngModel)]="password">
-                  <label for="password">Mật khẩu</label>
-              </div>
-              <div class="input-group-text" id="togglePassword">
-                  <i class="fas fa-eye"></i>
-              </div>
-          </div>
-          
-          <div class="d-flex justify-content-between align-items-center mb-4">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="rememberMe">
-                  <label class="form-check-label" for="rememberMe">
-                      Ghi nhớ đăng nhập
-                  </label>
-              </div>
-              <a href="#" class="text-link">Quên mật khẩu?</a>
-          </div>
-          
-          <button type="submit" class="btn btn-primary w-100" (click)="login()">
-              <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
-          </button>
-          
-          <div class="divider">
-              
-          </div>
-          
-          
-          <div class="mt-4 text-center">
-              <p>Chưa có tài khoản? <a href="/register" class="text-link">Chuyển qua trang đăng ký</a></p>
-          </div>
-      </form>
-      
-      <div class="login-footer">
-          <p>© 2025 Trường Đại học Quy Nhơn. Tất cả quyền được bảo lưu.</p>
-      </div>
+    <!-- Login Form -->
+    <div class="login-form-container">
+        <div class="logo-container">
+            <div class="logo">
+                <span class="text-primary fw-bold">QN</span>
+            </div>
+            <div>
+                <h4 class="mb-0 fw-bold">Quy Nhon University</h4>
+            </div>
+        </div>
+        
+        <h2 class="mt-4 mb-1 fw-bold">Login</h2>
+        <p class="text-muted mb-4">Login to the student information portal</p>
+        
+        <div class="login-alert">
+            <i class="fas fa-info-circle"></i>
+            <span>Use your email and password to log in</span>
+        </div>
+        
+        <!-- onsubmit="return validateEmail()" -->
+        <form id="emailForm" > 
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" placeholder="Enter email" name="email" [(ngModel)]="email" (input)="onEmailChange()">
+                <label for="username">Email</label>
+            </div>
+            
+            <div class="floating-input-group">
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="pswd" [(ngModel)]="password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-group-text" id="togglePassword">
+                    <i class="fas fa-eye"></i>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">
+                        Remember me
+                    </label>
+                </div>
+                <a href="#" class="text-link">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100" (click)="login()">
+                <i class="fas fa-sign-in-alt me-2"></i>Login
+            </button>
+            
+            <div class="divider">
+                
+            </div>
+            
+            <div class="mt-4 text-center">
+                <p>Don't have an account? <a href="/register" class="text-link">Go to registration page</a></p>
+            </div>
+        </form>
+        
+        <div class="login-footer">
+            <p>© 2025 Quy Nhon University. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <!-- Banner -->
+    <div class="login-banner">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="banner-content">
+            <h1 class="display-4 fw-bold mb-4">Welcome to the Internship System</h1>
+            <p class="lead mb-4">The system for managing academic information and student activities of Quy Nhon University</p>
+            
+            <div class="feature-card">
+                <div class="row g-4">
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h5 class="fw-bold">Academic Management</h5>
+                        <p class="mb-0">Easily track academic results and class schedules</p>
+                    </div>
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h5 class="fw-bold">Reports & Evaluation</h5>
+                        <p class="mb-0">Submit reports and receive feedback from lecturers</p>
+                    </div>
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h5 class="fw-bold">Notifications</h5>
+                        <p class="mb-0">Stay updated with the latest announcements from the university</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wave"></div>
+    </div>
   </div>
   
-  <!-- Banner -->
-  <div class="login-banner">
-      <div class="floating-shapes">
-          <div class="shape"></div>
-          <div class="shape"></div>
-          <div class="shape"></div>
-          <div class="shape"></div>
-      </div>
-      
-      <div class="banner-content">
-          <h1 class="display-4 fw-bold mb-4">Chào mừng đến với hệ thống thực tập</h1>
-          <p class="lead mb-4">Hệ thống quản lý thông tin học tập và các hoạt động của sinh viên Trường Đại học Quy Nhơn</p>
-          
-          <div class="feature-card">
-              <div class="row g-4">
-                  <div class="col-md-4 feature-col">
-                      <div class="feature-icon">
-                          <i class="fas fa-graduation-cap"></i>
-                      </div>
-                      <h5 class="fw-bold">Quản lý học tập</h5>
-                      <p class="mb-0">Theo dõi kết quả học tập và lịch học một cách dễ dàng</p>
-                  </div>
-                  <div class="col-md-4 feature-col">
-                      <div class="feature-icon">
-                          <i class="fas fa-clipboard-list"></i>
-                      </div>
-                      <h5 class="fw-bold">Báo cáo & Đánh giá</h5>
-                      <p class="mb-0">Nộp báo cáo và nhận đánh giá từ giảng viên</p>
-                  </div>
-                  <div class="col-md-4 feature-col">
-                      <div class="feature-icon">
-                          <i class="fas fa-bell"></i>
-                      </div>
-                      <h5 class="fw-bold">Thông báo</h5>
-                      <p class="mb-0">Cập nhật thông tin mới nhất từ nhà trường</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-      
-      <div class="wave"></div>
-  </div>
-</div>

@@ -1,68 +1,357 @@
-form {
-    max-width: 600px; /* Giới hạn chiều rộng form */
-    margin: 20px auto; /* Canh giữa form */
-    padding: 20px;
-    background-color: #f9f9f9; /* Nền nhạt cho form */
-    border-radius: 10px; /* Bo góc mềm mại */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+.container {
+    padding: 30px 15px;
 }
 
-form div {
-    margin-bottom: 15px; /* Khoảng cách giữa các trường */
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: var(--transition);
+    margin-bottom: 30px;
 }
 
-form label {
-    display: block;
-    font-weight: bold;
+.card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-light);
+    border-bottom: none;
+    padding: 20px 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.3rem;
     margin-bottom: 5px;
-    color: #333; /* Màu chữ của label */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
 }
 
-form input,
-form select {
-    width: 100%; /* Chiều rộng full */
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd; /* Viền nhẹ */
-    border-radius: 5px; /* Bo góc */
-    background-color: #fff;
-    transition: border-color 0.3s ease;
+.card-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
 }
 
-form input:focus,
-form select:focus {
-    border-color: #007bff; /* Viền đổi màu khi focus */
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng ánh sáng khi focus */
+.card-body {
+    padding: 30px;
+    background-color: #ffffff;
 }
 
-form button {
-    width: calc(50% - 5px); /* Chiều rộng bằng một nửa form */
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
+.card-footer {
+    background-color: var(--secondary-color);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 15px 25px;
+}
+
+/* Section Styles */
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.required-field::after {
+    content: '*';
+    color: var(--danger-color);
+    margin-left: 4px;
+}
+
+.form-control, .form-select {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+/* Mentor Selection Styles */
+.mentor-selection-container {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 15px;
+    transition: var(--transition);
+}
+
+.mentor-selection-container:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.mentor-selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.mentor-filter {
+    width: 200px;
+}
+
+.mentor-search-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.mentor-search-container input {
+    padding-right: 40px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
     cursor: pointer;
+    transition: var(--transition);
 }
 
-form button:first-of-type {
-    margin-right: 10px; /* Khoảng cách giữa hai nút */
+.search-icon:hover {
+    color: var(--primary-color);
 }
 
-form button:hover {
-    background-color: #0056b3; /* Màu khi hover */
-    color: #fff;
+.mentor-list {
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
+.mentor-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mentor-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mentor-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.mentor-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.mentor-item:last-child {
+    border-bottom: none;
+}
+
+.mentor-item:hover {
+    background-color: rgba(26, 115, 232, 0.05);
+}
+
+.mentor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin: 0 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.mentor-item:hover .mentor-avatar {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-info {
+    flex-grow: 1;
+}
+
+.mentor-name {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+}
+
+.mentor-id {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selected-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.page-link {
+    color: var(--primary-color);
+    border-color: rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.page-link:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border-color: rgba(26, 115, 232, 0.2);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(26, 115, 232, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    color: var(--text-muted);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    border-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    form {
+    .card-body {
+        padding: 20px;
+    }
+    
+    .mentor-selection-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mentor-filter {
+        width: 100%;
+    }
+    
+    .pagination-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .card-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 15px 10px;
+    }
+    
+    .card-header, .card-body, .card-footer {
         padding: 15px;
     }
-
-    form button {
-        width: 100%; /* Nút full width trên màn hình nhỏ */
+    
+    .section-title {
+        font-size: 1.1rem;
     }
-
-    form button:first-of-type {
-        margin-right: 0;
+    
+    .mentor-item {
+        padding: 10px;
+    }
+    
+    .mentor-avatar {
+        width: 35px;
+        height: 35px;
+        margin: 0 10px;
     }
 }

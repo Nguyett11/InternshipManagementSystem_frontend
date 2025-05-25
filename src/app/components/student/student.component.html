@@ -1,60 +1,148 @@
-
-
-<!-- Header -->
 <header class="header">
-    <div class="header-container">
-        <div class="logo-container">
-            <div class="logo">
-                <span>QN</span>
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <div class="logo">
+                    <span>QNU</span>
+                </div>
+                <div>
+                    <div class="university-name">TRƯỜNG ĐẠI HỌC QUY NHƠN</div>
+                    <div class="university-name-en">QUY NHON UNIVERSITY</div>
+                </div>
             </div>
             <div>
-                <h1 class="university-title">TRƯỜNG ĐẠI HỌC QUY NHƠN</h1>
-                <p class="university-subtitle">CỔNG THÔNG TIN SINH VIÊN</p>
+                <!-- User Dropdown with Menu -->
+                <div class="dropdown">
+                    <button class="btn user-dropdown d-flex align-items-center gap-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fs-5"></i>
+                        <span>{{student.student_name}} | {{student.student_code}}</span>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" (click)="logout($event)">
+                            <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                          </a>
+                          </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="user-profile">
-            <div class="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="avatar">SV</div>
-                <span class="profile-name">Nguyễn Văn A</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#" routerLink="detail" 
-                    routerLinkActive="active"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Cài đặt</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#" (click)="logout(); $event.preventDefault();"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
-            </ul>
         </div>
     </div>
 </header>
 
-<div class="container-fluid main-container">
-    <div class="row g-4">
-        <!-- Sidebar -->
-        <div class="col-lg-3 col-md-4">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <i class="fas fa-th-large me-2"></i>Chức năng
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <!-- Left Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar">
+
+
+                    <!-- Academic Affairs Section -->
+                    <div class="menu-section animate-fade-in ">
+                        <i class="bi bi-book-fill"></i> NHIỆM VỤ
+                    </div>
+                    <ul class="menu-list animate-fade-in delay-2">
+                        <li><a href="#" routerLink="weekly-report" routerLinkActive="active"><i class="bi bi-calendar-check"></i> Công việc cần làm </a></li>
+                        <li><a href="#" routerLink="report-list" routerLinkActive="active"><i class="bi bi-pencil-square"></i> Danh sách báo cáo</a></li>
+                        <!-- <li><a href="#" routerLink="student-comment" routerLinkActive="active"><i class="bi bi-pencil-square"></i> Comment</a></li> -->
+                        <!-- <li><a href="#"><i class="bi bi-clipboard-check"></i> Kết quả đăng ký học phần</a></li>
+                        <li><a href="#"><i class="bi bi-star"></i> Ý kiến - Thảo luận</a></li>
+                        <li><a href="#"><i class="bi bi-journal-text"></i> Thời khóa biểu</a></li>
+                        <li><a href="#"><i class="bi bi-calendar-event"></i> Lịch thi</a></li>
+                        <li><a href="#"><i class="bi bi-award"></i> Xem điểm</a></li>
+                        <li><a href="#"><i class="bi bi-file-earmark-text"></i> Chứng chỉ</a></li>
+                        <li><a href="#"><i class="bi bi-mortarboard"></i> Kết quả xét tốt nghiệp</a></li> -->
+                    </ul>
+
+                    <!-- Functions Section -->
+                    <div class="menu-section animate-fade-in delay-1">
+                        <i class="bi bi-grid-3x3-gap-fill"></i>THÔNG TIN LIÊN HỆ
+                    </div>
+                    <ul class="menu-list animate-fade-in">
+                        <li><a href="#" routerLink="lecturer" routerLinkActive="active"><i class="bi bi-person"></i> Giảng viên</a></li>
+                        <li><a href="#" routerLink="mentor" routerLinkActive="active"><i class="bi bi-person"></i> Mentor</a></li>
+                    </ul>
+
+                    <!-- Personal Page Section -->
+                    <div class="menu-section animate-fade-in delay-2">
+                        <i class="bi bi-person-fill"></i> THÔNG TIN CỦA TÔI
+                    </div>
+                    <ul class="menu-list animate-fade-in delay-1">
+                        <li><a href="#" routerLink="detail" routerLinkActive="active"><i class="bi bi-info-circle"></i> Thông tin cá nhân</a></li>
+                        <li><a href="#" routerLink="intership" routerLinkActive="active"><i class="bi bi-envelope"></i> Hồ sơ thực tập</a></li>
+                    </ul>
+
+                    <!-- Company Section -->
+                    <div class="menu-section animate-fade-in delay-3">
+                        <i class="bi bi-cash-coin"></i> CÔNG TY
+                    </div>
+                    <ul class="menu-list animate-fade-in delay-4">
+                        <li><a href="#"  routerLink="company" routerLinkActive="active"><i class="bi bi-info-circle"></i> Danh sách công ty</a></li>
+                    </ul>
+
+
                 </div>
-                <ul class="sidebar-menu">
-                    <li><a href="#" class="active" routerLink="report" 
-                        routerLinkActive="active"><i class="fas fa-chart-bar"></i>Báo cáo</a></li>
-                    <li><a href="#" routerLink="company" 
-                        routerLinkActive="active"><i class="fas fa-building" ></i>Danh sách công ty</a></li>
-                    <li><a href="#" routerLink="mentor" 
-                        routerLinkActive="active"><i class="fas fa-user-tie" ></i>Thông tin người hướng dẫn</a></li>
-                    <li><a href="#" routerLink="lecturer" 
-                        routerLinkActive="active"><i class="fas fa-chalkboard-teacher" ></i>Thông tin giảng viên</a></li>
-                    <li><a href="#" routerLink="intership" 
-                        routerLinkActive="active"><i class="fas fa-book-reader"></i>Thông tin thực tập</a></li>
-                </ul>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-9 col-md-8">
+                
+                <router-outlet></router-outlet>
+
+
             </div>
         </div>
+    </div>
+</main>
 
-        <!-- Main Content -->
-        <div class="col-lg-9 col-md-8">
-            <router-outlet></router-outlet>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <h5>TRƯỜNG ĐẠI HỌC QUY NHƠN</h5>
+                <div class="footer-contact">
+                    <p><i class="bi bi-geo-alt-fill"></i> 170 An Dương Vương, Quy Nhơn, Bình Định</p>
+                    <p><i class="bi bi-telephone-fill"></i> (0256) 3846156</p>
+                    <p><i class="bi bi-envelope-fill"></i> dhqnqnu.edu.vn</p>
+                    <p><i class="bi bi-globe"></i> www.qnu.edu.vn</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>QUICK LINKS</h5>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Quy Nhon University Homepage</a></li>
+                    <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Digital Library</a></li>
+                    <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Weekly Work Schedule</a></li>
+                    <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Email System</a></li>
+                    <li><a href="#"><i class="bi bi-chevron-right me-2"></i>Technical Support</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <h5>CONNECT WITH US</h5>
+                <div class="d-flex gap-3 mb-4">
+                    <a href="#" class="btn btn-outline-light rounded-circle p-2">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light rounded-circle p-2">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light rounded-circle p-2">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light rounded-circle p-2">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>© 2024 Trường Đại học Quy Nhơn. Tất cả quyền được bảo lưu.</p>
+            <p class="mb-0">Phát triển bởi Trung tâm Công nghệ thông tin</p>
         </div>
     </div>
-</div>
+</footer>

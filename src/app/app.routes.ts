@@ -3,24 +3,31 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StudentComponent } from './components/student/student.component';
 import { AuthGuardFn } from './guards/auth.guard';
-import { StudentReportComponent } from './components/student/student.report/student.report.component';
-import { StudentDetailComponent } from './components/student/student.detail/student.detail.component';
-import { StudentLecturerComponent } from './components/student/student.lecturer/student.lecturer.component';
+import { StudentWeeklyReportComponent } from './components/student/student.weekly-report/student.weekly-report.component';
+import { StudentInformationStudentComponent } from './components/student/student.information-student/student.information-student.component';
+import { StudentInformationLecturerComponent } from './components/student/student.information-lecturer/student.information-lecturer.component';
 import { UserAdminComponent } from './components/admin/user.admin/user.admin.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { DetailReportStudentComponent } from './components/mentor/detail-report-student/detail-report-student.component';
-import { InformationMentorComponent } from './components/mentor/information-mentor/information-mentor.component';
-import { ManagementStudentsComponent } from './components/mentor/management-students/management-students.component';
-import { StudentMentorComponent } from './components/student/student.mentor/student.mentor.component';
+import { StudentInformationMentorComponent } from './components/student/student.information-mentor/student.information-mentor.component';
 import { StudentCreateInternshipComponent } from './components/student/student.create.internship/student.create.internship.component';
 import { StudentCompanyComponent } from './components/student/student.company/student.company.component';
 import { LecturerComponent } from './components/lecturer/lecturer.component';
-import { ListReportComponent } from './components/lecturer/list-report/list-report.component';
-import { CreateReportComponent } from './components/lecturer/create-report/create-report.component';
-import { SubmissionListComponent } from './components/lecturer/submission-list/submission-list.component';
-import { ManagementStudentComponent } from './components/lecturer/management-student/management-student.component';
-import { InformationLecturerComponent } from './components/lecturer/information-lecturer/information-lecturer.component';
+import { LecturerReportListComponent } from './components/lecturer/lecturer.report-list/lecturer.report-list.component';
+import { LecturerCreateReportComponent } from './components/lecturer/lecturer.create-report/lecturer.create-report.component';
+import { LecturerSubmissionListComponent } from './components/lecturer/lecturer.submission-list/lecturer.submission-list.component';
+import { LecturerManagementStudentComponent } from './components/lecturer/lecturer.management-student/lecturer.management-student.component';
+import { LecturerInformationLecturerComponent } from './components/lecturer/lecturer.information-lecturer/lecturer.information-lecturer.component';
 import { MentorComponent } from './components/mentor/mentor.component';
+import { StudentReportListComponent } from './components/student/student.report-list/student.report-list.component';
+import { StudentCommentComponent } from './components/student/student.comment/student.comment.component';
+import { LecturerStudentListComponent } from './components/lecturer/lecturer.student-list/lecturer.student-list.component';
+import { LecturerInfofmationReportComponent } from './components/lecturer/lecturer.information-report/lecturer.information-report.component';
+import { LecturerInformationStudentComponent } from './components/lecturer/lecturer.information-student/lecturer.information-student.component';
+import { MentorStudentListComponent } from './components/mentor/mentor.student-list/mentor.student-list.component';
+import { MentorInformationMentorComponent } from './components/mentor/mentor.information-mentor/mentor.information-mentor.component';
+import { MentorStudentReportListComponent } from './components/mentor/mentor.report-list/mentor.student-report-list.component';
+import { MentorCommentComponent } from './components/mentor/mentor.comment/mentor.comment.component';
+import { MentorInformationStudentComponent } from './components/mentor/mentor.information-student/mentor.information-student.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },  
@@ -33,23 +40,27 @@ export const routes: Routes = [
         children: [
             {
                 path: '', 
-                component: StudentReportComponent
+                component: StudentWeeklyReportComponent
             },
             {
                 path: 'detail', 
-                component: StudentDetailComponent
+                component: StudentInformationStudentComponent
             },
             {
-                path: 'report', 
-                component: StudentReportComponent
+                path: 'weekly-report', 
+                component: StudentWeeklyReportComponent
+            },
+            {
+                path: 'report-list', 
+                component: StudentReportListComponent
             },
             {
                 path: 'lecturer', 
-                component: StudentLecturerComponent
+                component: StudentInformationLecturerComponent
             },
             {
                 path: 'mentor', 
-                component: StudentMentorComponent
+                component: StudentInformationMentorComponent
             },
             {
                 path: 'intership', 
@@ -59,33 +70,53 @@ export const routes: Routes = [
                 path: 'company', 
                 component: StudentCompanyComponent
             },
+            {
+                path: 'student-comment', 
+                component: StudentCommentComponent
+            }
         ] },
     // Lecturer   
     { path: 'lecturer', component: LecturerComponent, canActivate:[AuthGuardFn],
         children: [
             {
                 path: '', 
-                component: ListReportComponent
+                component: LecturerReportListComponent
             },
             {
-                path: 'reportlist', 
-                component: ListReportComponent
+                path: 'report-list', 
+                component: LecturerReportListComponent
             },
             {
-                path: 'createreport', 
-                component: CreateReportComponent
+                path: 'create-report', 
+                component: LecturerCreateReportComponent
             },
             {
-                path: 'submissionlist/:id', 
-                component: SubmissionListComponent
+                path: 'information-report/:reportId', 
+                component: LecturerInfofmationReportComponent
             },
             {
-                path: 'managerstudent', 
-                component: ManagementStudentComponent
+                path: 'submission-list/:id', 
+                component: LecturerSubmissionListComponent
             },
             {
-                path: 'lecturerinfo', 
-                component: InformationLecturerComponent
+                path: 'managers-tudent', 
+                component: LecturerManagementStudentComponent
+            },
+            {
+                path: 'lecturer-info', 
+                component: LecturerInformationLecturerComponent
+            },
+            {
+                path: 'student-list', 
+                component: LecturerStudentListComponent
+            },
+            {
+                path: 'information-student/:user_id', 
+                component: LecturerInformationStudentComponent
+            },
+            {
+                path: 'information-lecturer', 
+                component: LecturerInformationLecturerComponent
             },
         ]},
     // Mentor 
@@ -93,20 +124,28 @@ export const routes: Routes = [
         children: [
             {
                 path: '', 
-                component: ManagementStudentsComponent
+                component: MentorStudentListComponent
             },
             {
-                path: 'managementStudent',
-                component: ManagementStudentsComponent
+                path: 'student-list',
+                component: MentorStudentListComponent
             },
             {
-                path: 'informentor',
-                component: InformationMentorComponent
+                path: 'information-mentor',
+                component: MentorInformationMentorComponent
             },
             {
-                path: 'submissionByStudent',
-                component: DetailReportStudentComponent
-            }
+                path: 'information-student/:studentCode',
+                component: MentorInformationStudentComponent
+            },
+            {
+                path: 'student-report-list/:studentCode',
+                component: MentorStudentReportListComponent
+            },
+            {
+                path: 'comment/:submissionId',
+                component: MentorCommentComponent
+            },
         ]
     },
     // Admin   

@@ -6,7 +6,7 @@ import { Lecturer } from '../../../models/lecturer';
 import { User } from '../../../models/user';
 import { StudentService } from '../../../services/student.service';
 import { CompanyService } from '../../../services/company.service';
-import { MentorService } from '../../../services/mentorService';
+import { MentorService } from '../../../services/mentor.service';
 import { LecturerService } from '../../../services/lecturer.service';
 import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -42,81 +42,58 @@ export class StudentCreateInternshipComponent {
   lecturerList: Lecturer[];
   userList : User[];
 
-  constructor(private studentService : StudentService, private companyService : CompanyService,
-    private mentorService : MentorService, private lecturerService : LecturerService, private userService : UserService
+  searchTerm: string = '';
+  errorMessage: string = '';
+
+  constructor(private studentService : StudentService, 
+    private companyService : CompanyService,
+    private mentorService : MentorService, 
+    private lecturerService : LecturerService, 
+    private userService : UserService
   ) { }
 
   ngOnInit(): void {
-    this.getCompanies(this.keyword, this.currentPage, 5);
-    this.getMentors(this.keyword, this.currentPage, 5);
-    this.getLectures(this.keyword, this.currentPage, 5);
-    this.getUsers(this.keyword, this.currentPage, 100);
+    this.getAllCompanies();
+    this.getAllMentors();
+    this.getAllLecturers();
   }
 
-  //Lấy danh sách công ty
-  getCompanies(keyword: string, page: number, limit: number){
-    this.companyService.getCompanies(keyword, page, limit).subscribe({
-      next: (response: any) => {
-        this.companyList = response.companies;
+  getAllCompanies(){
+    this.companyService.getAllCompanies().subscribe({
+      next: (data) => {
+        this.companyList = data; 
       },
-      complete: () => {
-      },
-      error: (error: any) => {
-
-        console.error('Error fetching students:', error);
-      }
-    });
-  }
-  
-  //lấy danh sách mentor
-  getMentors(keyword: string, page: number, limit: number){
-    this.mentorService.getMentors(keyword, page, limit).subscribe({
-      next: (response: any) => {
-        this.mentorList = response.mentors;
-      },
-      complete: () => {
-      },
-      error: (error: any) => {
-
-        console.error('Error fetching students:', error);
+      error: (err) => {
+        console.error('Lỗi lấy danh sách công ty:', err);
       }
     });
   }
 
-  //lấy danh sách lecturer
-  getLectures(keyword: string, page: number, limit: number){
-    this.lecturerService.getLectures(keyword, page, limit).subscribe({
-      next: (response: any) => {
-        this.lecturerList = response.lecturers;
-        console.log("lll",this.lecturerList);
+  getAllLecturers(){
+    this.lecturerService.getAllLecturers().subscribe({
+      next: (data) => {
+        this.lecturerList = data; 
       },
-      complete: () => {
-      },
-      error: (error: any) => {
-
-        console.error('Error fetching students:', error);
+      error: (err) => {
+        console.error('Lỗi lấy danh sách giảng viên:', err);
       }
     });
   }
 
-  //lấy danh sách user
-  getUsers(keyword: string, page: number, limit: number){
-    this.userService.getUsers(keyword, page, limit).subscribe({
-      next: (response: any) => {
-        this.userList = response.users;
+  getAllMentors(){
+    this.mentorService.getAllMentors().subscribe({
+      next: (data) => {
+        this.mentorList = data; 
       },
-      complete: () => {
-      },
-      error: (error: any) => {
-
-        console.error('Error fetching students:', error);
+      error: (err) => {
+        console.error('Lỗi lấy danh sách mentor:', err);
       }
     });
   }
 
   //Tạo thông tin thực tập
   createInternship() {
-    const userId = this.userService.getUserId(); // Lấy user_id từ dịch vụ
+    const userId = Number(localStorage.getItem('user_id'));
   
     const val: any = {
       student_code: this.student_code,
@@ -126,13 +103,13 @@ export class StudentCreateInternshipComponent {
       year_of_study: this.year_of_study,
       company_id: this.company_id,
       mentor_id: this.mentor_id,
+      lecturer_id: this.lecturer_id,
       start_date: this.start_date,
       end_date: this.end_date,
-      user_id: userId, // Sử dụng userId đã lấy từ dịch vụ
-      status: this.status,
       language: this.language,
       position: this.position,
-      lecturer_id: this.lecturer_id || 1 // Sử dụng lecturer_id với giá trị mặc định là 1
+      user_id: userId, 
+      status: this.status      
     };
   
     console.log('Dữ liệu gửi đi:', val); // Kiểm tra dữ liệu trước khi gửi
@@ -144,6 +121,66 @@ export class StudentCreateInternshipComponent {
       error: (error: any) => {
         console.error('Lỗi khi gửi dữ liệu:', error); // Log lỗi để xem chi tiết
         alert("Thêm thông tin thực tập sinh viên thất bại");
+      }
+    });
+  }
+
+  searchCompany(): void {
+    const trimmedName = this.searchTerm.trim();
+    if (!trimmedName) {
+      this.getAllCompanies();
+      return;
+    }
+  
+    // Nếu có tên cần tìm
+    this.companyService.searchCompaniesByName(trimmedName).subscribe({
+      next: (data) => {
+        this.companyList = data;
+        this.errorMessage = '';
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message || 'Không tìm thấy công ty';
+        this.companyList = [];
+      }
+    });
+  }
+
+  searchMentor(): void {
+    const trimmedName = this.searchTerm.trim();
+    if (!trimmedName) {
+      this.getAllMentors();
+      return;
+    }
+  
+    // Nếu có tên cần tìm
+    this.mentorService.searchMentorsByName(trimmedName).subscribe({
+      next: (data) => {
+        this.mentorList = data;
+        this.errorMessage = '';
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message || 'Không tìm thấy công ty';
+        this.mentorList = [];
+      }
+    });
+  }
+
+  searchLecturer(): void {
+    const trimmedName = this.searchTerm.trim();
+    if (!trimmedName) {
+      this.getAllLecturers();
+      return;
+    }
+  
+    // Nếu có tên cần tìm
+    this.lecturerService.searchLecturersByName(trimmedName).subscribe({
+      next: (data) => {
+        this.lecturerList = data;
+        this.errorMessage = '';
+      },
+      error: (error) => {
+        this.errorMessage = error.error.message || 'Không tìm thấy công ty';
+        this.lecturerList = [];
       }
     });
   }

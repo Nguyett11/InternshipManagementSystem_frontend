@@ -1,176 +1,201 @@
-
-    <div class="registration-container">
-        <!-- Registration Form -->
-        <div class="registration-form-container">
-            <div class="logo-container">
-                <div class="logo">
-                    <span class="text-primary fw-bold">QN</span>
-                </div>
-                <div>
-                    <h4 class="mb-0 fw-bold">Trường Đại học Quy Nhơn</h4>
-                </div>
+<div class="registration-container">
+    <!-- Registration Form -->
+    <div class="registration-form-container">
+        <div class="logo-container">
+            <div class="logo">
+                <span class="text-primary fw-bold">QN</span>
             </div>
-            
-            <h2 class="mt-4 mb-1 fw-bold">Đăng ký tài khoản</h2>
-            <p class="text-muted mb-4">Đăng ký tài khoản để truy cập cổng thông tin sinh viên</p>
-            
-            <div class="registration-alert">
-                <i class="fas fa-info-circle"></i>
-                <span>Vui lòng điền đầy đủ thông tin để đăng ký tài khoản</span>
-            </div>
-            
-            <form id="registrationForm">
-                <div class="form-card">
-                    <div class="form-section-title">
-                        <i class="fas fa-user me-2"></i>Thông tin cá nhân
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="fullName" name="full_name" placeholder="Nhập họ và tên" required>
-                        <label for="fullName">Họ và tên</label>
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required>
-                        <label for="email">Email</label>
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="phoneNumber" name="phone_number" placeholder="Nhập số điện thoại" required>
-                        <label for="phoneNumber">Số điện thoại</label>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Giới tính</label>
-                        <div class="gender-options">
-                            <div class="gender-option">
-                                <input type="radio" id="male" name="gender" value="Nam" required>
-                                <label for="male">
-                                    <i class="fas fa-male"></i>
-                                    <span>Nam</span>
-                                </label>
-                            </div>
-                            <div class="gender-option">
-                                <input type="radio" id="female" name="gender" value="Nữ">
-                                <label for="female">
-                                    <i class="fas fa-female"></i>
-                                    <span>Nữ</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="dateOfBirth" name="date_of_birth">
-                        <label for="dateOfBirth">Ngày sinh</label>
-                    </div>
-                </div>
-                
-                <div class="form-card">
-                    <div class="form-section-title">
-                        <i class="fas fa-briefcase me-2"></i>Thông tin vai trò
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="desiredRole" name="desired_role" required>
-                            <option value="" selected disabled>Chọn vai trò mong muốn</option>
-                            <option value="Sinh viên">Sinh viên</option>
-                            <option value="Giảng viên">Giảng viên</option>
-                            <option value="Nhân viên">Nhân viên</option>
-                            <option value="Quản trị viên">Quản trị viên</option>
-                        </select>
-                        <label for="desiredRole">Vai trò mong muốn</label>
-                    </div>
-                </div>
-                
-                <div class="form-card">
-                    <div class="form-section-title">
-                        <i class="fas fa-lock me-2"></i>Thông tin tài khoản
-                    </div>
-                    
-                    <div class="floating-input-group">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
-                            <label for="password">Mật khẩu</label>
-                        </div>
-                        <div class="input-group-text" id="togglePassword">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-
-                    <div class="floating-input-group mt-3">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu" required>
-                            <label for="confirmPassword">Xác nhận mật khẩu</label>
-                        </div>
-                        <div class="input-group-text" id="toggleConfirmPassword">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-user-plus me-2"></i>Đăng ký
-                    </button>
-                </div>
-                
-                <div class="divider">
-              
-                </div>
-                
-                
-                <div class="mt-4 text-center">
-                    <p>Bạn có tài khoản? <a href="/" class="text-link">Chuyển qua trang đăng nhập</a></p>
-                </div>
-            </form>
-            
-            <div class="registration-footer">
-                <p>© 2025 Trường Đại học Quy Nhơn. Tất cả quyền được bảo lưu.</p>
+            <div>
+                <h4 class="mb-0 fw-bold">Quy Nhon University</h4>
             </div>
         </div>
-        
-        <!-- Banner -->
-        <div class="registration-banner">
-            <div class="floating-shapes">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-            </div>
-            
-            <div class="banner-content">
-                <h1 class="display-4 fw-bold mb-4">Tham gia cùng chúng tôi</h1>
-                <p class="lead mb-4">Đăng ký tài khoản để truy cập đầy đủ các tính năng của Cổng thông tin sinh viên Trường Đại học Quy Nhơn</p>
-                
-                <div class="feature-card">
-                    <div class="row g-4">
-                        <div class="col-md-4 feature-col">
-                            <div class="feature-icon">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <h5 class="fw-bold">Bảo mật</h5>
-                            <p class="mb-0">Thông tin của bạn luôn được bảo vệ an toàn</p>
+
+        <h2 class="mt-4 mb-1 fw-bold">Register Account</h2>
+        <p class="text-muted mb-4">Register an account to access the student portal</p>
+
+        <div class="registration-alert">
+            <i class="fas fa-info-circle"></i>
+            <span>Please fill in all required fields to register an account</span>
+        </div>
+
+        <form class="was-validated form-register" id="email_form" #registerForm="ngForm">
+            <div class="form-card">
+                <div class="form-section-title">
+                    <i class="fas fa-user me-2"></i>Personal Information
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter full name"
+                        [(ngModel)]="full_name" required>
+                    <label for="full_name">Full Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+                        [(ngModel)]="email" required>
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" id="phone_number" name="phone_number"
+                        placeholder="Enter phone number" [(ngModel)]="phone_number" required>
+                    <label for="phone_number">Phone Number</label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    <div class="gender-options">
+                        <div class="gender-option">
+                            <input type="radio" id="male" name="gender" value="nam" [(ngModel)]="gender" required>
+                            <label for="male">
+                                <i class="fas fa-male"></i>
+                                <span>Male</span>
+                            </label>
                         </div>
-                        <div class="col-md-4 feature-col">
-                            <div class="feature-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h5 class="fw-bold">Truy cập mọi nơi</h5>
-                            <p class="mb-0">Sử dụng trên mọi thiết bị, mọi lúc mọi nơi</p>
-                        </div>
-                        <div class="col-md-4 feature-col">
-                            <div class="feature-icon">
-                                <i class="fas fa-sync-alt"></i>
-                            </div>
-                            <h5 class="fw-bold">Cập nhật liên tục</h5>
-                            <p class="mb-0">Thông tin học tập được cập nhật thường xuyên</p>
+                        <div class="gender-option">
+                            <input type="radio" id="female" name="gender" value="nữ" [(ngModel)]="gender">
+                            <label for="female">
+                                <i class="fas fa-female"></i>
+                                <span>Female</span>
+                            </label>
                         </div>
                     </div>
                 </div>
+
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="date" name="date_of_birth" [(ngModel)]="date_of_birth"
+                        required>
+                    <label for="date_of_birth">Date of Birth</label>
+                </div>
             </div>
-            
-            <div class="wave"></div>
+
+            <div class="form-card">
+                <div class="form-section-title">
+                    <i class="fas fa-briefcase me-2"></i>Role Information
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="desired_role" name="desired_role" [(ngModel)]="desired_role"
+                        required>
+                        <option value="" selected disabled>Select desired role</option>
+                        <option value="Student">Student</option>
+                        <option value="Lecturer">Lecturer</option>
+                        <option value="Mentor">Staff</option>
+                    </select>
+                    <label for="desired_role">Desired Role</label>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <div class="form-section-title">
+                    <i class="fas fa-lock me-2"></i>Account Information
+                </div>
+
+                <div class="floating-input-group">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter password" [(ngModel)]="password" (ngModelChange)="check_passwords_match()"
+                            required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <div class="floating-input-group mt-3">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="retype_password" name="retype_password"
+                            placeholder="Confirm password" [(ngModel)]="retype_password"
+                            (ngModelChange)="check_passwords_match()" required>
+                        <label for="retype_password">Confirm Password</label>
+                    </div>
+                    <!-- Show error when passwords do not match -->
+                    <div *ngIf="registerForm.form.controls['retype_password']?.errors?.['password_mismatch']">
+                        <span>Passwords do not match!</span>
+                    </div>
+                </div>
+
+                <div class="form-check mb-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="rememberMe"
+                            (change)="toggle_password_visibility()" name="remember"> Show Password
+                    </label>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" (click)="register()">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </button>
+            </div>
+            <div class="divider">
+            </div>
+            <div class="mt-4 text-center">
+                <p>Already have an account? <a href="/" class="text-link">Go to login page</a></p>
+            </div>
+        </form>
+
+        <div class="registration-footer">
+            <p>© 2025 Quy Nhon University. All rights reserved.</p>
         </div>
     </div>
+
+    <!-- Banner -->
+    <div class="registration-banner">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="banner-content">
+            <h1 class="display-4 fw-bold mb-4">Join Us</h1>
+            <p class="lead mb-4">Register an account to fully access the features of the Quy Nhon University Student Portal</p>
+
+            <div class="feature-card">
+                <div class="row g-4">
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h5 class="fw-bold">Security</h5>
+                        <p class="mb-0">Your information is always protected</p>
+                    </div>
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5 class="fw-bold">Access Anywhere</h5>
+                        <p class="mb-0">Use on all devices, anytime, anywhere</p>
+                    </div>
+                    <div class="col-md-4 feature-col">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h5 class="fw-bold">Continuous Updates</h5>
+                        <p class="mb-0">Learning information is updated frequently</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wave"></div>
+    </div>
+</div>
+
+<script>
+    function validate_email() {
+        const email = document.getElementById('email').value;
+        const emailError = document.getElementById('emailError');
+
+        if (!email.includes('@')) {
+            emailError.innerHTML = "Email must include an '@' character.";
+            emailError.style.display = 'block';
+            document.getElementById('email').classList.add('is-invalid');
+            return false;
+        } else {
+            emailError.style.display = 'none';
+            document.getElementById('email').classList.remove('is-invalid');
+            return true;
+        }
+    }
+</script>

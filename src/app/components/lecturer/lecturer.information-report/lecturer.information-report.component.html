@@ -1,0 +1,318 @@
+<!-- Report Details -->
+<div class="card">
+    <div class="card-header">
+        <i class="bi bi-file-earmark-text"></i> Thông tin báo cáo
+    </div>
+    <div class="card-body">
+        <ul class="detail-list">
+            <li>
+                <div class="detail-label">Tiêu đề báo cáo</div>
+                <div class="detail-value">{{this.report.title}}</div>
+            </li>
+            <li>
+                <div class="detail-label">Mô tả</div>
+                <div class="detail-value">
+                    {{this.report.description}}
+                </div>
+            </li>
+            <li>
+                <div class="detail-label">Ngày tạo</div>
+                <div class="detail-value">{{this.report.create_date | date: 'dd/MM/yyyy' }}</div>
+            </li>
+            <li>
+                <div class="detail-label">Hạn nộp</div>
+                <div class="detail-value">{{this.report.due_date | date: 'dd/MM/yyyy' }}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Student Submissions -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-people"></i> Danh sách bài nộp</span>
+        <div class="search-container">
+            <input type="text" class="form-control form-control-sm" id="searchTerm"
+                placeholder="Tìm kiếm sinh viên..."  [(ngModel)]="searchTerm" (input)="search()">
+            <i class="bi bi-search search-icon"></i>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="all">
+                <div class="student-table-container">
+                    <div class="table-responsive">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%">Họ và tên</th>
+                                    <th style="width: 15%">MSSV</th>
+                                    <th style="width: 10%">Lớp</th>
+                                    <th style="width: 15%">Trạng thái</th>
+                                    <th style="width: 15%">Ngày nộp</th>
+                                    <th style="width: 10%">Điểm</th>
+                                    <th style="width: 10%">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let student of students"  data-id="1">
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="student-avatar">
+                                                <span>SV</span>
+                                            </div>
+                                            <span class="student-name">{{student.Student.student_name}}</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="student-id">{{student.Student.student_code}}</span></td>
+                                    <td><span class="badge badge-class">{{student.Student.class_student}}</span></td>
+                                    <td><span class="badge badge-submitted" *ngIf="student.Submission">{{student.Submission.status}}</span></td>
+                                    <td ><p *ngIf="student.Submission">{{student.Submission.submission_date | date: 'dd/MM/yyyy HH:mm' }}</p></td>
+                                    <td ><span class="grade-display" *ngIf="student.Grading">{{student.Grading.grade}}</span></td>
+                                    <td>
+                                        <div class="grade-actions">
+                                            <button class="btn btn-sm btn-outline-primary edit-grade"
+                                                    (click)="updateGrading(student.Grading, student.Submission.submission_id, student.Student.lecturer_id)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+
+                                            <!-- <button class="btn btn-sm btn-outline-primary edit-grade" data-id="1"
+                                                data-bs-toggle="modal" data-bs-target="#gradeModal" (click)="createGrading(student.Submission.submission_id, student.Student.lecturer_id)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button> -->
+
+                                            <button class="btn btn-sm btn-outline-secondary view-submission" data-id="1"
+                                                data-bs-toggle="modal" data-bs-target="#submissionModal"
+                                                (click)="xemchitiet(student.Student.student_code, student.Submission.submission_id)">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                            <!-- <button class="btn btn-sm btn-outline-primary edit-grade"
+                                                    (click)="updateGrading(student.Grading.id)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button> -->
+
+                                        </div>
+                                    </td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div>
+                <span class="text-muted">Hiển thị 1-10 trong tổng số 25 sinh viên</span>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<!-- Grade Modal - Redesigned -->
+<div class="modal fade" id="gradeModal" tabindex="-1" aria-labelledby="gradeModalLabel" aria-hidden="true">
+    <div class="modal-dialog grade-modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gradeModalLabel"><i class="bi bi-award"></i> Chấm điểm cho sinh viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="grade-form">
+                    <!-- <div class="grade-form-header">
+                        <div class="grade-student-info">
+                            <div class="grade-avatar" id="gradeStudentAvatar">
+                                <span>NV</span>
+                            </div>
+                            <div>
+                                <div class="grade-student-name" id="gradeStudentName">Nguyễn Văn A</div>
+                                <div class="grade-student-id" id="gradeStudentId">2050123456</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="grade-form-body">
+                        <form id="gradeForm">
+                            <input type="hidden" id="studentId" value="">
+
+                            <div class="grade-input-group">
+                                <label for="grade" class="grade-input-label">Điểm số</label>
+                                <div class="grade-input-container">
+                                    <input type="number" class="grade-number-input" id="grade" min="0" max="10"
+                                        step="0.1" placeholder="0.0" name="grade" [(ngModel)]="grade">
+                                </div>
+                                <div class="grade-scale">
+                                    <span>0</span>
+                                    <span>10</span>
+                                </div>
+                            </div>
+
+                            <div class="grade-input-group">
+                                <label for="comment" class="grade-input-label">Nhận xét</label>
+                                <textarea class="grade-comment" id="comment"
+                                    placeholder="Nhập nhận xét về bài làm của sinh viên..." name="feedback" [(ngModel)]="feedback"></textarea>
+                            </div>
+
+                            <div class="grade-form-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" id="saveGrade" (click)="submitGrading()">Lưu điểm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateGrade" tabindex="-1" aria-labelledby="gradeModalLabel" aria-hidden="true">
+    <div class="modal-dialog grade-modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gradeModalLabel"><i class="bi bi-award"></i> Cập nh điểm cho sinh viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="grade-form">
+                    <div class="grade-form-header">
+                        <!-- <div class="grade-student-info">
+                            <div class="grade-avatar" id="gradeStudentAvatar">
+                                <span>NV</span>
+                            </div>
+                            <div>
+                                <div class="grade-student-name" id="gradeStudentName">Nguyễn Văn A</div>
+                                <div class="grade-student-id" id="gradeStudentId">2050123456</div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="grade-form-body">
+                        <form id="gradeForm">
+                            <input type="hidden" id="studentId" value="">
+
+                            <div class="grade-input-group">
+                                <label for="grade" class="grade-input-label">Điểm số</label>
+                                <div class="grade-input-container">
+                                    <input type="number" class="grade-number-input" id="grade" min="0" max="10"
+                                        step="0.1" placeholder="0.0" name="grade" [(ngModel)]="grade">
+                                </div>
+                                <div class="grade-scale">
+                                    <span>0</span>
+                                    <span>10</span>
+                                </div>
+                            </div>
+
+                            <div class="grade-input-group">
+                                <label for="comment" class="grade-input-label">Nhận xét</label>
+                                <textarea class="grade-comment" id="comment"
+                                    placeholder="Nhập nhận xét về bài làm của sinh viên..." name="feedback" [(ngModel)]="feedback"></textarea>
+                            </div>
+
+                            <div class="grade-form-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" id="saveGrade" (click)="submitGrading()">Lưu điểm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Submission View Modal - Redesigned -->
+<div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="submissionModalLabel"><i class="bi bi-file-earmark-text"></i> Chi tiết bài
+                    nộp</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="submission-header">
+                    <div class="submission-info">
+                        <div class="submission-avatar" id="submissionAvatar">
+                            <span>NV</span>
+                        </div>
+                        <div *ngIf="student">
+                            <div class="submission-student-name" id="submissionStudentName">{{student.student_name}}</div>
+                            <div class="submission-student-id" id="submissionStudentId">{{student.student_code}}</div>
+                        </div>
+                    </div>
+                    <div class="submission-details">
+                        <div class="submission-detail-item">
+                            <div class="submission-detail-label">Thời gian nộp</div>
+                            <div *ngIf="submission" class="submission-detail-value" id="submissionTime">{{submission.Submission.submission_date | date: 'dd/MM/yyyy HH:mm' }}</div>
+                        </div>
+                        <div class="submission-detail-item">
+                            <div class="submission-detail-label">Trạng thái</div>
+                            <div *ngIf="submission" class="submission-detail-value"><span class="badge badge-submitted">{{submission.Submission.status}}</span></div>
+                        </div>
+                        <div class="submission-detail-item">
+                            <div class="submission-detail-label">Điểm số</div>
+                            <div *ngIf="submission" class="submission-detail-value" id="submissionGrade">{{submission.Grading.grade}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submission-section">
+                    <div class="submission-section-title">
+                        <i class="bi bi-file-earmark"></i> Tệp đính kèm
+                    </div>
+                    <div class="file-card">
+                        <div class="file-card-icon">
+                            <i class="bi bi-file-earmark-zip"></i>
+                        </div>
+                        <div class="file-card-content">
+                            <div *ngIf="submission" class="file-card-name">{{submission.Submission.file}}</div>
+                            <div class="file-card-info">
+                                <span class="file-card-size">8.2 MB</span>
+                                <span *ngIf="submission" class="file-card-date"><i class="bi bi-calendar3"></i> {{submission.Submission.submission_date | date: 'dd/MM/yyyy' }} </span>
+                            </div>
+                        </div>
+                        <div class="file-card-actions">
+                            <button class="btn btn-sm btn-outline-primary" (click)="downloadFile(submission.Submission.file)">
+                            <i class="bi bi-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submission-section">
+                    <div class="submission-section-title">
+                        <i class="bi bi-chat-left-text"></i> Ghi chú của sinh viên
+                    </div>
+                    <div class="student-note">
+                        Em xin gửi báo cáo cuối kỳ môn Lập trình Web. Báo cáo bao gồm tài liệu PDF và mã nguồn đóng gói.
+                        Em đã triển khai trang web lên hosting và đính kèm link demo ở trên. Mong thầy/cô xem xét và
+                        đánh giá. Xin cảm ơn!
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="downloadAll">
+                    <i class="bi bi-download me-2"></i>Tải xuống tất cả
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

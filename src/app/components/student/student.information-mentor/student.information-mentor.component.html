@@ -1,0 +1,58 @@
+<div class="section-header animate-fade-in">
+    <i class="bi bi-person-vcard-fill"></i> THÔNG TIN MENTOR
+</div>
+<div class="content-card animate-fade-in">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-container">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture" class="profile-avatar">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">{{this.mentor.mentor_name}}</h1>
+                <div class="profile-id">
+                    <i class="bi bi-person-badge-fill fs-5 text-primary"></i>
+                    Chức vụ: <strong>{{this.mentor.position}}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="profileTabsContent">
+            <!-- Personal Information Tab -->
+            <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                <div class="info-section">
+                    <h3 class="info-section-title">
+                        <i class="bi bi-telephone-fill"></i> Thông tin liên hệ
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-phone-fill"></i> Số điện thoại</div>
+                            <div class="info-value">{{this.user.phone_number}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-envelope-fill"></i> Email</div>
+                            <div class="info-value">{{this.user.email}}</div>
+                        </div>
+                    </div>
+
+                    <h3 class="info-section-title">
+                        <i class="bi bi-person-lines-fill"></i> Thông tin cá nhân
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-building-gear"></i> Công ty</div>
+                            <div class="info-value">{{this.company_name}}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-diagram-3-fill"></i> Phòng ban</div>
+                            <div class="info-value">Phòng ban đang công tác</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><i class="bi bi-clock-history"></i> Năm kinh nghiệm</div>
+                            <div class="info-value">5</div>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
