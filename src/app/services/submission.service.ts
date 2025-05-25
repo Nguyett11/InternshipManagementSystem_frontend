@@ -13,7 +13,7 @@ export class SubmissionService {
   constructor(private http: HttpClient) { }
 
   getSubmissionByIdReport(id: number): Observable<Submission> {
-    const token = localStorage.getItem('token'); // Lấy token JWT từ localStorage hoặc sessionStorage
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -58,44 +58,7 @@ export class SubmissionService {
 
   uploadFileWord(reportId: number, file: File): Observable<any> {
     const formData = new FormData();
-    // Đặt key là 'file_path' để khớp với @JsonProperty ở backend
     formData.append('file', file); 
     return this.http.post(`${this.apiBaseUrl}/submissions/${reportId}`, formData);
   }
-
-  getSubmissionByReport(
-    reportId: number,
-    keyword: string,
-    page: number,
-    limit: number
-  ): Observable<Submission[]> {
-    const params = new HttpParams()
-      .set('keyword', keyword)
-      .set('page', page.toString())
-      .set('limit', limit.toString());
-      debugger
-      console.log(reportId);
-    return this.http.get<Submission[]>(`${this.apiBaseUrl}/submissions/${reportId}`, { params });
-  }  
-
-  // Tải file từ server
-  downloadFile(fileName: string): Observable<Blob> {
-    const url = `${this.apiBaseUrl}/submissions/word/${encodeURIComponent(fileName)}`;
-    return this.http.get(url, { responseType: 'blob' });
-  }
-
-  getSubmissionByStudent(
-    studentCode: number,
-    keyword: string,
-    page: number,
-    limit: number
-  ): Observable<Submission[]> {
-    const params = new HttpParams()
-      .set('keyword', keyword)
-      .set('page', page.toString())
-      .set('limit', limit.toString());
-      debugger
-      console.log(studentCode);
-    return this.http.get<Submission[]>(`${this.apiBaseUrl}/submissions/${studentCode}`, { params });
-  } 
 }
