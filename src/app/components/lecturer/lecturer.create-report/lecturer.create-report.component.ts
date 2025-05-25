@@ -79,8 +79,7 @@ export class LecturerCreateReportComponent implements OnInit {
           this.loadStudents(userId);
           return;
       }
-      
-      // Nếu có tên cần tìm
+
       this.studentService.searchStudentsByName(trimmedName).subscribe({
         next: (data) => {
             this.studentList = data;
@@ -119,7 +118,6 @@ createReport() {
 
   this.reportService.addReport(val).subscribe({
     next: (createdReport) => {
-      // createdReport là dữ liệu báo cáo vừa tạo, có id báo cáo
       const reportId = createdReport.report_id; 
 
       if (this.selectedStudents.length === 0) {
@@ -131,12 +129,11 @@ createReport() {
       const saveReportStudents$ = this.selectedStudents.map(student => {
         const reportStudent = {
           report_id: reportId,
-          student_code: student.student_code  // hoặc student.id tùy cấu trúc
+          student_code: student.student_code 
         };
         return this.reportStudentService.addReportStudent(reportStudent);
       });
 
-      // Gọi đồng thời tất cả API lưu reportStudent
       forkJoin(saveReportStudents$).subscribe({
         next: () => alert("Tạo báo cáo và lưu sinh viên thành công."),
         error: (err) => {
