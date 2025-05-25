@@ -21,19 +21,9 @@ export class GradingService{
     });
     return this.http.post(`${this.apiBaseUrl}`, grading, { headers });
     }
-    
-    insertGrading(submissionId: number,insertGrading: InsertGradingDTO): Observable<any> {
-        return this.http.post(`${this.apiBaseUrl}/${submissionId}`, insertGrading);
-      }
-
-    // Phương thức để lấy chấm điểm theo submissionId
-    getGrading(submissionId: number): Observable<any> {
-      debugger
-      return this.http.get<any>(`${this.apiBaseUrl}/${submissionId}`);
-    }
 
     updateGrading(body: any): Observable<any> {
-      const token = localStorage.getItem('token'); // Lấy token JWT từ localStorage hoặc sessionStorage
+      const token = localStorage.getItem('token'); 
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
@@ -42,7 +32,7 @@ export class GradingService{
   }
 
     getGradingById(id: number): Observable<any> {
-      const token = localStorage.getItem('token'); // Lấy token JWT từ localStorage hoặc sessionStorage
+      const token = localStorage.getItem('token'); 
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
