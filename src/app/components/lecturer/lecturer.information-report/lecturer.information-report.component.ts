@@ -98,42 +98,7 @@ export class LecturerInfofmationReportComponent {
     }
   });
 }
-
-// createGrading(submissionId : number, lecturerId : number){
-//   this.submissionId = submissionId;
-//   this.lecturerId = lecturerId;
-//   this.grade = null;
-//   this.feedback = '';
-// }
-
-// submitGrading() {
-//   if (this.grade === null || isNaN(Number(this.grade)) || Number(this.grade) < 0 || Number(this.grade) > 10) {
-//     alert('Điểm phải từ 0 đến 10');
-//     return;
-//   }
-
-//   const grading = {
-//     submission_id: this.submissionId,
-//     lecturer_id: this.lecturerId,
-//     grade: this.grade.toString(),
-//     feedback: this.feedback
-//   };
-
-//   console.log("Grading: ", grading);
-
-//   this.gradingService.postGrading(grading).subscribe({
-//     next: (res) => {
-//       alert('Chấm điểm thành công!');
-//       this.modal?.hide();
-//       this.loadStudents();
-//     },
-//     error: (err) => {
-//       alert('Lỗi khi chấm điểm.');
-//       console.error(err);
-//     }
-//   });
-// }
-
+  
 updateGrading(grading: any, submissonId : number, lecturerId : number) {
   if (grading){
   this.gradingId = grading.id;
@@ -148,7 +113,6 @@ updateGrading(grading: any, submissonId : number, lecturerId : number) {
 
   console.log(this.submissionId, this.lecturerId);
 
-  // Mở modal thủ công (nếu không dùng data-bs-toggle)
   const modalEl = document.getElementById('updateGrade');
   if (modalEl) {
     this.modal = new bootstrap.Modal(modalEl);
@@ -191,7 +155,6 @@ submitGrading() {
       }
     });
   } else {
-    // Thêm mới
     this.gradingService.postGrading(gradingPOST).subscribe({
       next: () => {
         alert('Chấm điểm thành công!');
