@@ -151,30 +151,4 @@ createReport() {
     }
   });
 }
-
-// createReport() {  
-//   // due_date là string "YYYY-MM-DDTHH:mm" từ datetime-local
-//   const dueDateObj = new Date(this.due_date);
-
-//   // Cộng thêm 7 tiếng để chuyển về UTC+7
-//   const dueDateVietnamTime = new Date(dueDateObj.getTime() + 7 * 60 * 60 * 1000);
-
-//   const val: any = {
-//     title: this.title,
-//     description: this.description,
-//     create_date: new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString(),
-//     due_date: dueDateVietnamTime.toISOString(),  
-//     lecturer_id: this.lecturer_id
-//   };
-
-//   console.log('Dữ liệu gửi đi:', val);
-
-//   this.reportService.addReport(val).subscribe({
-//     next: () => alert("Tạo báo cáo thành công."),
-//     error: (error) => {
-//       console.error('Lỗi khi gửi dữ liệu:', error);
-//       alert("Tạo báo cáo thất bại");
-//     }
-//   });
-// }
 }
