@@ -42,7 +42,6 @@ export class RegisterComponent {
     this.gender = 'Nam';
     this.desired_role = 'Lecturer';
     this.date_of_birth = new Date(2022-11-11);
-    //inject tạo ra một đối tượng trong class
   }
 
   register() {
@@ -84,9 +83,7 @@ export class RegisterComponent {
       this.registerForm.form.controls['retype_password'].setErrors(null);
     }
   }
-  // Toggle hiển thị mật khẩu
   toggle_password_visibility() {
-    // Nếu rememberMe = true, hiển thị mật khẩu, ngược lại ẩn đi
     const type = this.rememberMe ? 'text' : 'password';
     (document.getElementById('password') as HTMLInputElement).type = type;
     (document.getElementById('retype_password') as HTMLInputElement).type = type;
